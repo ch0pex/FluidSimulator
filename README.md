@@ -3,3 +3,4 @@
 - Marina Buitrago Perez
 - Alvaro Cabrera Barrio 
 - Alberto Diaz-Pacheco Corrales
+- Miguel Dario Trosel Manrique
