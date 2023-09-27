@@ -1,8 +1,15 @@
 #include "fluid.hpp"
+#include <vector>
+#include <iostream>
 
 using namespace sim;
 
-Fluid::Fluid(int argc, char **argv) : args_parser_(argc, argv) { }
+Fluid::Fluid(int argc, char **argv) :
+    args_parser_(argc, argv),
+    init_file_(argv[2]),
+    final_file_(argv[3])
+{
+}
 
 int Fluid::ParseArgs(){
     int err = 0;
@@ -18,10 +25,20 @@ int Fluid::ParseArgs(){
 
 
 int Fluid::InitSim() {
-    return 0;
+    int np, err;
+    double ppm;
+    if ((err = init_file_.ReadHeader(ppm, np)) != 0)
+        return (err);
+    if (( err = init_file_.ReadParticles()) != 0)
+        return (err);
+
+    std::cout << "ppm: " << ppm << std::endl;
+    std::cout << "np: " << np << std::endl;
+    return (0);
 }
 
 int Fluid::ProcessSim() {
+
     return 0;
 }
 

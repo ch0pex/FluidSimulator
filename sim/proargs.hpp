@@ -3,7 +3,8 @@
 
 #include <cstdint>
 #include <string_view>
-#include <fstream>
+
+#include "sim/fld.hpp"
 
 namespace sim {
 class Proargs{
@@ -11,7 +12,7 @@ public:
     explicit Proargs(int argc, char* argv[]);
     int CheckCount();
     int CheckNts(int& nts);
-    int CheckFiles(std::ifstream& init_file, std::ofstream& final_file);
+    int CheckFiles(sim::ifld& init_file, sim::ofld& final_file);
 
 private:
     int argc_;

@@ -28,13 +28,12 @@ int Proargs::CheckNts(int& nts) {
     return (0);
 }
 
-int Proargs::CheckFiles(std::ifstream& init_file, std::ofstream& final_file) {
-    init_file = std::ifstream(argv_[2]);
+int Proargs::CheckFiles(sim::ifld& init_file, sim::ofld& final_file) {
     if(!init_file) {
         std::cout << "Error: Cannot open " << argv_[2] << " for reading" << std::endl;
         return (-3);
     }
-    final_file = std::ofstream(argv_[3]);
+
     if(!final_file) {
         std::cout << "Error: Cannot open " << argv_[3] << " for writing" << std::endl;
         return (-4);

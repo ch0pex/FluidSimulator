@@ -14,8 +14,8 @@ public:
     int StoreResults(); // 4- Almacenamiento de resultados
 private:
     Proargs args_parser_;
-    std::ifstream init_file_;
-    std::ofstream final_file_;
+    sim::ifld init_file_;
+    sim::ofld final_file_;
     int nts_;
 };
 #endif //FLUID_FLUID_HPP
