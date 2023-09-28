@@ -38,6 +38,6 @@ int Proargs::CheckFiles(sim::ifld& init_file, sim::ofld& final_file) {
         std::cout << "Error: Cannot open " << argv_[3] << " for writing" << std::endl;
         return (-4);
     }
-    return(0);
+    return (0);
 }
 }
