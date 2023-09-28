@@ -10,7 +10,7 @@ namespace sim {
 class Proargs{
 public:
     explicit Proargs(int argc, char* argv[]);
-    int CheckCount();
+    [[nodiscard]] int CheckCount() const;
     int CheckNts(int& nts);
     int CheckFiles(sim::ifld& init_file, sim::ofld& final_file);
 

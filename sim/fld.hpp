@@ -11,7 +11,7 @@ public:
     ~ifld();
     int ReadHeader(double& ppm, int& np);
     int ReadParticles();
-    operator bool();
+    operator bool() const;
 private:
     std::ifstream input_file_;
     std::vector<double> particles;
@@ -29,7 +29,7 @@ public:
     operator bool();
 private:
     std::ofstream output_file_;
-    size_t length_;
+    size_t length_{};
     bool is_open_;
 };
 }

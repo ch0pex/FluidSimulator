@@ -1,6 +1,7 @@
 #ifndef FLUID_CONSTANTS_HPP
 #define FLUID_CONSTANTS_HPP
 
+#include <array>
 
 // CONSTANTES ESCALARES
 constexpr double MUL_RAD = 1.695; //r
@@ -13,7 +14,7 @@ constexpr double P_SIZE = 0.0002; //d_r
 constexpr double TIME_STEP = 0.001; //DELTA*t
 
 
-using vec3 = double[3];
+using vec3 = std::array<double, 3>;
 // Aceleracion externa
 constexpr vec3 GRAVITY = {0.0, 9.8, 0.0};
 // Límite superior del recinto

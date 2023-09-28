@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS_OFF)
 
 add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
 
-set(CMAKE_CXX_FLAGS_RELEASE "−march=native")
+#set(CMAKE_CXX_FLAGS_RELEASE "−march=native")
 
 add_subdirectory(sim)
 add_subdirectory(fluid)

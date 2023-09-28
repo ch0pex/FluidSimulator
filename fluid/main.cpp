@@ -1,7 +1,7 @@
 #include "fluid.hpp"
 
 int main(int argc, char* argv[]) {
-    int err;
+    int err = 0;
     Fluid fluid_sim = Fluid(argc, argv);
 
     //1- Comprobacion de argumentos
