@@ -25,8 +25,9 @@ int Fluid::ParseArgs(){
 
 
 int Fluid::InitSim() {
-    int np, err;
-    double ppm;
+    int np = 0;
+    int err = 0;
+    double ppm = 0.0;
     if ((err = init_file_.ReadHeader(ppm, np)) != 0)
         return (err);
     if (( err = init_file_.ReadParticles()) != 0)
@@ -38,7 +39,6 @@ int Fluid::InitSim() {
 }
 
 int Fluid::ProcessSim() {
-
     return 0;
 }
 

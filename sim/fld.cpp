@@ -53,6 +53,10 @@ int ifld::ReadParticles() {
         std::memcpy(&tmp, buffer.data(), 4);
         particles.push_back(static_cast<double>(tmp));
     }
+
+    for(auto& particle : particles){
+        std::cout << particle << std::endl;
+    }
     return (0);
 }
 
