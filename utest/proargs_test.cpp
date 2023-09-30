@@ -1,61 +1,40 @@
-#include "sim/proargs.hpp"
-
 #include <gtest/gtest.h>
 
-// Test fixture para la clase Proargs
-class ProargsTest : public ::testing::Test {
-protected:
-    ProargsTest() {
-        // Configura datos de prueba
-        static const char* testArgs[] = {"program_name", "10", "input.txt", "output.txt"};
-        argc_ = sizeof(testArgs) / sizeof(testArgs[0]);
-        argv_ = const_cast<char**>(testArgs);
-    }
+#include "sim/proargs.hpp"
+#include <span>
 
-    int argc_;
-    char** argv_;
-};
+namespace sim {
+  TEST(ProargsTest, CheckCountValidArgs) {
+    const char* args[] = {"prog_name", "10", "init_path", "final_path"};
+    const Proargs parser(std::span<const char*>(args, 4));
+    EXPECT_EQ(0, parser.CheckCount());
+  }
 
-// Prueba que CheckCount() devuelve 0 para la cantidad correcta de argumentos
-TEST_F(ProargsTest, CheckCountValid) {
-    const sim::Proargs proargs(argc_, argv_);
-    EXPECT_EQ(proargs.CheckCount(), 0);
-}
+  TEST(ProargsTest, CheckCountInvalidArgs) {
+    const char* args[] = {"prog_name", "10", "init_path"};
+    Proargs parser(std::span<const char*>(args, 3));
+    EXPECT_EQ(-1, parser.CheckCount());
+  }
 
-// Prueba que CheckCount() devuelve -1 para una cantidad incorrecta de argumentos
-TEST_F(ProargsTest, CheckCountInvalid) {
-    const char* testArgs[] = {"program_name", "10", "input.txt"};
-    argc_ = sizeof(testArgs) / sizeof(testArgs[0]);
-    argv_ = const_cast<char**>(testArgs);
-    const sim::Proargs proargs(argc_, argv_);
-    EXPECT_EQ(proargs.CheckCount(), -1);
-}
+  TEST(ProargsTest, CheckNtsValidValue) {
+    const char* args[] = {"prog_name", "10", "init_path", "final_path"};
+    Proargs parser(std::span<const char*>(args, 4));
+    int nts;
+    EXPECT_EQ(0, parser.CheckNts(nts));
+    EXPECT_EQ(10, nts);
+  }
 
-// Prueba que CheckNts() devuelve 0 para un valor nts válido
-TEST_F(ProargsTest, CheckNtsValid) {
-    int nts = 0;
-    sim::Proargs proargs(argc_, argv_);
-    EXPECT_EQ(proargs.CheckNts(nts), 0);
-    EXPECT_EQ(nts, 10);
-}
+  TEST(ProargsTest, CheckNtsNonNumeric) {
+    const char* args[] = {"prog_name", "abc", "init_path", "final_path"};
+    Proargs parser(std::span<const char*>(args, 4));
+    int nts;
+    EXPECT_EQ(-1, parser.CheckNts(nts));
+  }
 
-// Prueba que CheckNts() devuelve -1 para un valor nts no numérico
-TEST_F(ProargsTest, CheckNtsNonNumeric) {
-    int nts = 0;
-    const char* testArgs[] = {"program_name", "abc", "input.txt", "output.txt"};
-    argc_ = sizeof(testArgs) / sizeof(testArgs[0]);
-    argv_ = const_cast<char**>(testArgs);
-    sim::Proargs proargs(argc_, argv_);
-    EXPECT_EQ(proargs.CheckNts(nts), -1);
-}
-
-// Prueba que CheckNts() devuelve -2 para un valor nts no válido (<= 0)
-TEST_F(ProargsTest, CheckNtsInvalid) {
-    int nts = 0;
-    const char* testArgs[] = {"program_name", "0", "input.txt", "output.txt"};
-    argc_ = sizeof(testArgs) / sizeof(testArgs[0]);
-    argv_ = const_cast<char**>(testArgs);
-    sim::Proargs proargs(argc_, argv_);
-    EXPECT_EQ(proargs.CheckNts(nts), -2);
-}
-
+  TEST(ProargsTest, CheckNtsNegativeValue) {
+    const char* args[] = {"prog_name", "-10", "init_path", "final_path"};
+    Proargs parser(std::span<const char*>(args, 4));
+    int nts;
+    EXPECT_EQ(-2, parser.CheckNts(nts));
+  }
+} // namespace sim
