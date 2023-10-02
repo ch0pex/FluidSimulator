@@ -1,16 +1,13 @@
 #include <span>
 
-#include "simulator.hpp"
-#include "sim/proargs.hpp"
+#include "sim/simulator.hpp"
 
 int main(int argc, const char* argv[]) {
   const std::span<const char*>  args_view{argv, static_cast<size_t>(argc)};
-  Simulator fluid_sim = Simulator(args_view);
-  int err = 0;
-  //1- Comprobacion de argumentos
-  err = fluid_sim.ParseArgs();
-  if (err == 0)
-  {
+  sim::Simulator fluid_sim = sim::Simulator(args_view);
+  sim::error_code err = fluid_sim.ParseArgs(); //1- Comprobacion de argumentos
+
+  if (err == 0) {
     //2- Inicializacion de la simulacion
     err = fluid_sim.InitSim();
     if (err == 0) {

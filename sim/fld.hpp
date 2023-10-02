@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 
+#include "error.hpp"
+
 namespace sim {
   class ifld {
   public:
@@ -12,8 +14,8 @@ namespace sim {
     ~ifld();
     void Open(const std::string& path);
     void Close();
-    int ReadHeader(double& ppm, int& np);
-    int ReadParticles();
+    sim::error_code ReadHeader(double& ppm, int& np);
+    sim::error_code ReadParticles();
     operator bool() const;
   private:
     std::ifstream input_file_;
@@ -29,12 +31,12 @@ namespace sim {
     ~ofld();
     void Open(const std::string& path);
     void Close();
-    int WriteHeader();
-    int WriteParticles();
-    operator bool();
+    sim::error_code WriteHeader();
+    sim::error_code WriteParticles();
+    operator bool() const;
   private:
     std::ofstream output_file_;
-    bool is_open_;
+    bool is_open_{};
   };
 }
 

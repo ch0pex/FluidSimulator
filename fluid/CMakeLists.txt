@@ -1,5 +1,6 @@
-add_executable(fluid simulator.cpp
-        main.cpp
-        simulator.hpp)
+add_executable(fluid ../sim/simulator.cpp
+        fluid.cpp
+        ../sim/simulator.hpp
+        ../sim/error.hpp)
 target_link_libraries (fluid sim)
 target_include_directories(fluid PUBLIC ../common)

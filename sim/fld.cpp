@@ -4,6 +4,8 @@
 #include <cstring>
 #include <iostream>
 
+#include "constants.hpp"
+
 namespace sim {
   ifld::ifld(const std::string& path) : is_open_(false), length_(0) {
     Open(path);
@@ -33,7 +35,7 @@ namespace sim {
     }
   }
 
-  int ifld::ReadHeader(double& ppm, int& np) {
+  sim::error_code ifld::ReadHeader(double& ppm, int& np) {
     std::array<char, 4> buffer{};
     float tmp = 0.0F;
 
@@ -46,17 +48,17 @@ namespace sim {
 
     if (np <= 0){
       std::cout << "Invalid number of particles\n";
-      return (-5);
+      return (PARTICLE_NUM_ERR);
     }
 
     if (static_cast<size_t>(np) != ((length_ - 8) / 4) / 9) {
       std::cout << "Number of particles mismatch. Header: " << np << " Found: " << ((length_ - 8) / 4) / 9 << "\n";
-      return (-5);
+      return (PARTICLE_NUM_ERR);
     }
-    return (0);
+    return (SUCCESS);
   }
 
-  int ifld::ReadParticles() {
+  sim::error_code ifld::ReadParticles() {
     std::array<char,4> buffer{};
     float tmp = 0.0F;
 
@@ -67,7 +69,7 @@ namespace sim {
       std::memcpy(&tmp, buffer.data(), 4);
       particles.push_back(static_cast<double>(tmp));
     }
-    return (0);
+    return (SUCCESS);
   }
 
   ifld::operator bool() const {
@@ -80,7 +82,7 @@ namespace sim {
     Open(path);
   }
 
-  ofld::ofld() : is_open_(false){ }
+  ofld::ofld() = default;
 
   ofld::~ofld() {
     Close();
@@ -102,15 +104,15 @@ namespace sim {
     }
   }
 
-  int ofld::WriteHeader() {
-    return 0;
+  sim::error_code ofld::WriteHeader() {
+    return (SUCCESS);
   }
 
-  int ofld::WriteParticles() {
-    return 0;
+  sim::error_code ofld::WriteParticles() {
+    return (SUCCESS);
   }
 
-  ofld::operator bool() {
+  ofld::operator bool() const {
     return is_open_;
   }
 

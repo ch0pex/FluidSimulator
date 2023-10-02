@@ -6,14 +6,15 @@
 #include <span>
 
 #include "sim/fld.hpp"
+#include "error.hpp"
 
 namespace sim {
   class Proargs{
   public:
     explicit Proargs(std::span<const char*> args);
-    [[nodiscard]] int CheckCount() const;
-    int CheckNts(int& nts);
-    int CheckFiles(sim::ifld& init_file, sim::ofld& final_file);
+    [[nodiscard]] sim::error_code CheckCount() const;
+    sim::error_code CheckNts(int& nts);
+    sim::error_code CheckFiles(sim::ifld& init_file, sim::ofld& final_file);
     inline std::string GetInitPath() {return args_.at(2);};
     inline std::string GetFinalPath() {return args_.at(3);};
 
