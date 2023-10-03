@@ -2,7 +2,7 @@
 #define FLUID_ERROR_HPP
 
 namespace sim {
-  enum error_code : int8_t {
+  enum error_code {
     PARTICLE_NUM_ERR = -5,
     FINAL_FILE_ERR = -4,
     INIT_FILE_ERR,

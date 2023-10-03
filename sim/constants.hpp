@@ -24,9 +24,9 @@ namespace sim {
   // Aceleracion externa
   constexpr vec3 GRAVITY = {0.0, 9.8, 0.0};
   // Límite superior del recinto
-  constexpr vec3 TOP_LIMIT = {0.065, 0.1, 0.065};
-  // Límite inferior del recinto
   constexpr vec3 BOTTOM_LIMIT = {-0.065, -0.08, -0.065};
+  // Límite inferior del recinto
+  constexpr vec3 TOP_LIMIT = {0.065, 0.1, 0.065};
 }
 
 #endif //FLUID_CONSTANTS_HPP

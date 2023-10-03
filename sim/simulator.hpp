@@ -1,10 +1,14 @@
 #ifndef FLUID_SIMULATOR_HPP
 #define FLUID_SIMULATOR_HPP
 
+#include <span>
+#include <optional>
+
 #include "sim/error.hpp"
 #include "sim/proargs.hpp"
+#include "grid.hpp"
 
-#include <span>
+
 namespace sim {
   class Simulator {
   public:
@@ -17,6 +21,7 @@ namespace sim {
     sim::Proargs args_parser_;
     sim::ifld init_file_;
     sim::ofld final_file_;
+    std::optional<Grid> grid_;
     int nts_;
   };
 }

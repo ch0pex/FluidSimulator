@@ -41,12 +41,14 @@ namespace sim {
     err = init_file_.ReadParticles();
     if (err != SUCCESS) { return (err);
     }
-    std::cout << "ppm: " << ppm << std::endl;
-    std::cout << "np: " << np << std::endl;
+    grid_.emplace(np, ppm);
     return (err);
   }
 
   sim::error_code Simulator::ProcessSim() {
+    for(int i = 0; i < nts_; i++) {
+
+    }
     return (SUCCESS);
   }
 
