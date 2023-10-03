@@ -1,64 +1,84 @@
 #include "simulator.hpp"
 
-#include <iostream>
-#include <vector>
-
 namespace sim {
-  Simulator::Simulator(const std::span<const char*> args_view) :
-      args_parser_(args_view),
-      nts_(0)
-  {
-  }
-
-  sim::error_code Simulator::ParseArgs() {
-    error_code err = SUCCESS;
-
-    err = args_parser_.CheckCount();
-    if (err != SUCCESS) { //[[likely]] o [[unlikely]]?
-      return (err);
+    /**
+     * Constructor de la calse simulador
+     * @param args_view: Span con el que se construye args_parser para la comprobacion de argumentos
+     */
+    Simulator::Simulator(const std::span<const char *> args_view) :
+            args_parser_(args_view),
+            nts_(0) {
     }
 
-    err = args_parser_.CheckNts(nts_);
-    if (err != 0) {
-      return (err);
+    /**
+     * Representa la primera etapa de la simulacion, utilza la clase Proargs para comprobar que los argumentos son
+     * correctos.
+     * @return Devuelve SUCCESS (0) si los argumentos pasados por el usuario eran correctos o bien el error
+     * correspondiente
+     */
+    sim::error_code Simulator::ParseArgs() {
+        error_code err = SUCCESS;
+
+        err = args_parser_.CheckCount();
+        if (err != SUCCESS) { //[[likely]] o [[unlikely]]?
+            return (err);
+        }
+
+        err = args_parser_.CheckNts(nts_);
+        if (err != 0) {
+            return (err);
+        }
+
+        err = args_parser_.CheckOpenFiles(init_file_, final_file_);
+        if (err != SUCCESS) {
+            return (err);
+        }
+
+        return (err);
     }
 
-    err = args_parser_.CheckFiles(init_file_, final_file_);
-    if (err != SUCCESS) {
-      return (err);
+    /**
+     * Representa la segunda fase de la simulacion, donde se inicializa la simulacion, se lee el fichero de entrada y
+     * se inicializa el grid con dicha informacion
+     * @return
+     */
+    sim::error_code Simulator::InitSim() {
+        sim::error_code err = SUCCESS;
+        int num_particles = 0;
+        double ppm = 0.0;
+
+        err = init_file_.ReadHeader(ppm, num_particles);
+        if (err != SUCCESS) {
+            return (err);
+        }
+
+        err = init_file_.ReadParticles();
+        if (err != SUCCESS) {
+            return (err);
+        }
+
+        grid_.emplace(num_particles, ppm);
+        return (err);
     }
 
-    return (err);
-  }
+    /**
+     * Representa la tercera fase de la simulacion, donde se procesan los calculos necesarios tantas veces como el
+     * usuario indico por argumento
+     * @return
+     */
+    sim::error_code Simulator::ProcessSim() {
+        for (int i = 0; i < nts_; i++) {
 
-  sim::error_code Simulator::InitSim() {
-    sim::error_code err = SUCCESS;
-    int num_particles = 0;
-    double ppm = 0.0;
-
-    err = init_file_.ReadHeader(ppm, num_particles);
-    if (err != SUCCESS) {
-      return (err);
+        }
+        return (SUCCESS);
     }
 
-    err = init_file_.ReadParticles();
-    if (err != SUCCESS) {
-      return (err);
+    /**
+     * Representa la ultima fase de la simulacion, se almacenan los resultados en el fichero especificado por parametro
+     * @return
+     */
+    sim::error_code Simulator::StoreResults() {
+        return (SUCCESS);
     }
-
-    grid_.emplace(num_particles, ppm);
-    return (err);
-  }
-
-  sim::error_code Simulator::ProcessSim() {
-    for(int i = 0; i < nts_; i++) {
-
-    }
-    return (SUCCESS);
-  }
-
-  sim::error_code Simulator::StoreResults() {
-    return (SUCCESS);
-  }
 
 }

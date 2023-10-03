@@ -9,18 +9,24 @@
 #include "error.hpp"
 
 namespace sim {
-  class Proargs{
-  public:
-    explicit Proargs(std::span<const char*> args);
-    [[nodiscard]] sim::error_code CheckCount() const;
-    sim::error_code CheckNts(int& nts);
-    sim::error_code CheckFiles(sim::ifld& init_file, sim::ofld& final_file);
-    inline std::string GetInitPath() {return args_.at(2);};
-    inline std::string GetFinalPath() {return args_.at(3);};
+    ///Clase encargada de comprobar los argumentos pasados por el usuario para ejecucion del programa
+    class Proargs {
+    public:
+        explicit Proargs(std::span<const char *> args);
 
-  private:
-    std::vector<const char*> args_;
-  };
+        [[nodiscard]] sim::error_code CheckCount() const;
+
+        sim::error_code CheckNts(int &nts);
+
+        sim::error_code CheckOpenFiles(sim::ifld &init_file, sim::ofld &final_file);
+
+        inline std::string GetInitPath() { return args_.at(2); };
+
+        inline std::string GetFinalPath() { return args_.at(3); };
+
+    private:
+        std::vector<const char *> args_;
+    };
 }
 
 #endif //ARQUICOMP_P1_PROARGS_HPP
