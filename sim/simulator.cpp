@@ -12,9 +12,9 @@ namespace sim {
 
   sim::error_code Simulator::ParseArgs() {
     error_code err = SUCCESS;
-    //[[likely]] o [[unlikely]]?
+
     err = args_parser_.CheckCount();
-    if (err != SUCCESS) {
+    if (err != SUCCESS) { //[[likely]] o [[unlikely]]?
       return (err);
     }
 
@@ -27,21 +27,26 @@ namespace sim {
     if (err != SUCCESS) {
       return (err);
     }
+
     return (err);
   }
 
   sim::error_code Simulator::InitSim() {
     sim::error_code err = SUCCESS;
-    int np = 0;
+    int num_particles = 0;
     double ppm = 0.0;
-    err = init_file_.ReadHeader(ppm, np);
+
+    err = init_file_.ReadHeader(ppm, num_particles);
     if (err != SUCCESS) {
       return (err);
     }
+
     err = init_file_.ReadParticles();
-    if (err != SUCCESS) { return (err);
+    if (err != SUCCESS) {
+      return (err);
     }
-    grid_.emplace(np, ppm);
+
+    grid_.emplace(num_particles, ppm);
     return (err);
   }
 
