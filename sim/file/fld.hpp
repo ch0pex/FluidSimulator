@@ -4,7 +4,8 @@
 #include <fstream>
 #include <vector>
 
-#include "error.hpp"
+#include "sim/utils/error.hpp"
+#include "sim/utils/vector.hpp"
 
 namespace sim {
     /// Clase encargada de la lectura de fichero .fld
@@ -22,13 +23,13 @@ namespace sim {
 
         sim::error_code ReadHeader(double &ppm, int &np);
 
-        sim::error_code ReadParticles();
+        std::vector<vec3> ReadParticles();
+
 
         operator bool() const;
 
     private:
         std::ifstream input_file_;
-        std::vector<double> particles;
         size_t length_;
     };
 

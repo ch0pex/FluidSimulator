@@ -3,7 +3,7 @@
 #include <array>
 #include <cstring>
 #include <iostream>
-
+#include "sim/utils/constants.hpp"
 
 namespace sim {
     /**
@@ -58,15 +58,12 @@ namespace sim {
      * se devuelve PARTICLE_NUM_ERR (-5), en caso de exito se devuelve SUCCESS (0)
      */
     sim::error_code ifld::ReadHeader(double &ppm, int &np) {
-        std::array<char, 4> buffer{};
         float tmp = 0.0F;
-
         input_file_.seekg(0, std::ifstream::beg);
-        input_file_.read(buffer.data(), 4);
-        std::memcpy(&tmp, buffer.data(), sizeof(float));
+        input_file_.read( reinterpret_cast<char*>(&tmp), 4);
         ppm = static_cast<double>(tmp);
-        input_file_.read(buffer.data(), 4);
-        std::memcpy(&np, buffer.data(), sizeof(int));
+        input_file_.read(reinterpret_cast<char*>(&np), 4);
+
 
         if (np <= 0) {
             std::cout << "Invalid number of particles\n";
@@ -83,20 +80,19 @@ namespace sim {
 
     /**
      * Lee todas las particulas almacenadas en el fichero inicial
-     * @return Devuelve SUCCESS (0)
+     * @return Devuelve las particulas en un vector (esto no es un problema a partir de la version C++11)
      */
-    sim::error_code ifld::ReadParticles() {
-        std::array<char, 4> buffer{};
-        float tmp = 0.0F;
+    std::vector<vec3> ifld::ReadParticles() {
+        std::vector<vec3> particles;
+        std::array<float,3> tmp = { 0.0F, 0.0F, 0.0F};
 
         input_file_.seekg(8, std::ifstream::beg);
         particles.reserve((length_ - 8) / 4);
         for (size_t i = 0; i < length_ - 8; i += 4) {
-            input_file_.read(buffer.data(), 4); // if (!input_file_) return SOME_ERROR?
-            std::memcpy(&tmp, buffer.data(), 4);
-            particles.push_back(static_cast<double>(tmp));
+            input_file_.read(reinterpret_cast<char*>(&tmp.at(0)),12); // if (!input_file_) return SOME_ERROR?
+            particles.emplace_back(tmp.at(0), tmp.at(1),tmp.at(2));
         }
-        return (SUCCESS);
+        return (particles);
     }
 
     /**

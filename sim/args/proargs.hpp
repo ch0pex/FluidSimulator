@@ -5,8 +5,8 @@
 #include <string_view>
 #include <span>
 
-#include "sim/fld.hpp"
-#include "error.hpp"
+#include "sim/file/fld.hpp"
+#include "sim/utils/error.hpp"
 
 namespace sim {
     ///Clase encargada de comprobar los argumentos pasados por el usuario para ejecucion del programa

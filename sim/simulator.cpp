@@ -1,5 +1,7 @@
 #include "simulator.hpp"
 
+#include <cstddef>
+
 namespace sim {
     /**
      * Constructor de la calse simulador
@@ -44,6 +46,7 @@ namespace sim {
      */
     sim::error_code Simulator::InitSim() {
         sim::error_code err = SUCCESS;
+        std::vector<vec3> particles;
         int num_particles = 0;
         double ppm = 0.0;
 
@@ -52,12 +55,8 @@ namespace sim {
             return (err);
         }
 
-        err = init_file_.ReadParticles();
-        if (err != SUCCESS) {
-            return (err);
-        }
-
-        grid_.emplace(num_particles, ppm);
+        particles = init_file_.ReadParticles();
+        grid_.emplace(num_particles, ppm, particles);
         return (err);
     }
 

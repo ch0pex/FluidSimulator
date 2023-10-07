@@ -4,9 +4,9 @@
 #include <span>
 #include <optional>
 
-#include "sim/error.hpp"
-#include "sim/proargs.hpp"
-#include "grid.hpp"
+#include "sim/utils/error.hpp"
+#include "sim/args/proargs.hpp"
+#include "sim/grid/grid.hpp"
 
 
 namespace sim {

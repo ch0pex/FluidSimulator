@@ -2,25 +2,30 @@
 #define ARQUICOMP_P1_GRID_HPP
 
 #include "block.hpp"
+#include "sim/utils/vector.hpp"
 
-#include "constants.hpp"
+#include <vector>
 
 namespace sim {
     class Grid {
     public:
-        Grid(int np, double ppm);
+
+        Grid(int np, double ppm, std::vector<vec3> &particles);
+
 
         void ComputeBlocks();
 
     private:
-        std::vector<Block> blocks_;
+        void InitMessage() const;
         double np_;
         double ppm_;
         double h_;
         double m_;
-        vec3 num_blocks_;
+        vec3 grid_size_;
         vec3 block_size_;
-        double total_blocks_;
+
+        std::vector<Block> blocks_;
+        //std::vector<Block> aux;
     };
 }
 

@@ -28,5 +28,5 @@ if $SAVE_TO_FILE; then
     } 2>&1 | tee -a "$OUTPUT_FILE"
 else
     # Si no se decide guardar en un archivo, simplemente ejecuta el comando y muestra la salida en la terminal
-    /usr/bin/perf stat /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-debug/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld
+    /usr/bin/perf stat /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-release/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld
 fi
