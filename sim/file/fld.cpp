@@ -59,19 +59,19 @@ namespace sim {
      */
     sim::error_code ifld::ReadHeader(double &ppm, int &np) {
         float tmp = 0.0F;
+
         input_file_.seekg(0, std::ifstream::beg);
-        input_file_.read( reinterpret_cast<char*>(&tmp), 4);
+        input_file_.read( reinterpret_cast<char*>(&tmp), sizeof(float));
         ppm = static_cast<double>(tmp);
-        input_file_.read(reinterpret_cast<char*>(&np), 4);
-
-
+        input_file_.read(reinterpret_cast<char*>(&np), sizeof(float));
         if (np <= 0) {
             std::cout << "Invalid number of particles\n";
             return (PARTICLE_NUM_ERR);
         }
-
-        if (static_cast<size_t>(np) != ((length_ - 8) / 4) / 9) {
-            std::cout << "Number of particles mismatch. Header: " << np << " Found: " << ((length_ - 8) / 4) / 9
+        // En cada partícula tenemos 9 números (3 vectores con 3 datos)
+        // si np es distinto del número de floats partido de 9, el número de partículas del header no coincide con las del archivo
+        if (static_cast<size_t>(np) != ((length_ - SIZE_HEADER) / sizeof(float)) / PARTICLE_COMPONENTS) {
+            std::cout << "Number of particles mismatch. Header: " << np << " Found: " << ((length_ - SIZE_HEADER) / 4) / PARTICLE_COMPONENTS
                       << "\n";
             return (PARTICLE_NUM_ERR);
         }
@@ -83,16 +83,17 @@ namespace sim {
      * @return Devuelve las particulas en un vector (esto no es un problema a partir de la version C++11)
      */
     std::vector<vec3> ifld::ReadParticles() {
-        std::vector<vec3> particles;
-        std::array<float,3> tmp = { 0.0F, 0.0F, 0.0F};
+        std::vector<vec3> particles_vectors;
+        std::vector<float> tmp((length_ - SIZE_HEADER) / sizeof(float));
 
-        input_file_.seekg(8, std::ifstream::beg);
-        particles.reserve((length_ - 8) / 4);
-        for (size_t i = 0; i < length_ - 8; i += 4) {
-            input_file_.read(reinterpret_cast<char*>(&tmp.at(0)),12); // if (!input_file_) return SOME_ERROR?
-            particles.emplace_back(tmp.at(0), tmp.at(1),tmp.at(2));
+        particles_vectors.reserve((length_ - SIZE_HEADER) / sizeof(float));
+        input_file_.seekg(SIZE_HEADER, std::ifstream::beg);
+        input_file_.read(reinterpret_cast<char*>(tmp.data()),length_ - SIZE_HEADER); // if (!input_file_) return SOME_ERROR?
+        for (size_t i = 0; i < tmp.size(); i+=3) {
+            particles_vectors.emplace_back(tmp[i], tmp[i + 1], tmp[i + 2]);
         }
-        return (particles);
+
+        return (particles_vectors); // NO se si tiene coste creo que no
     }
 
     /**

@@ -46,7 +46,7 @@ namespace sim {
      */
     sim::error_code Simulator::InitSim() {
         sim::error_code err = SUCCESS;
-        std::vector<vec3> particles;
+        std::vector<vec3> particles_data;
         int num_particles = 0;
         double ppm = 0.0;
 
@@ -55,8 +55,8 @@ namespace sim {
             return (err);
         }
 
-        particles = init_file_.ReadParticles();
-        grid_.emplace(num_particles, ppm, particles);
+        particles_data = init_file_.ReadParticles();
+        grid_.emplace(num_particles, ppm, particles_data);
         return (err);
     }
 

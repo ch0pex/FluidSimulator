@@ -26,24 +26,11 @@ namespace sim {
     // Límite inferior del recinto
     constexpr vec3 TOP_LIMIT = {0.065, 0.1, 0.065};
 
-/*
-    class Timer {
-    private:
-        std::chrono::time_point<std::chrono::steady_clock> start_time_;
-        std::string message_;
+    // Constantes fichero
+    constexpr size_t SIZE_HEADER = 8;
 
-    public:
-        Timer(const std::string& message) : message_(message) {
-            start_time_ = std::chrono::steady_clock::now();
-        }
-
-        ~Timer() {
-            auto end_time = std::chrono::steady_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time_).count();
-            std::cout << message_ << " duró " << duration << " nanosegundos." << std::endl;
-        }
-    };
-    */
+    //particle components
+    constexpr size_t PARTICLE_COMPONENTS = 9;
 }
 
 #endif //FLUID_CONSTANTS_HPP

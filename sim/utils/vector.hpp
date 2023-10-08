@@ -18,21 +18,25 @@ namespace sim {
 
         vec3();
 
-        constexpr vec3(double _x = 0.0, double _y = 0.0, double _z = 0.0) : x(_x), y(_y), z(_z) {}
+        constexpr vec3(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {}
 
-        vec3 operator+(const vec3& vector) const;
+        vec3 operator+(const vec3 &vector) const;
 
-        vec3 operator+=(const vec3& vector);
+        vec3 operator+=(const vec3 &vector);
 
-        vec3 operator-(const vec3& vector) const;
+        vec3 operator-(const vec3 &vector) const;
 
-        vec3 operator-=(const vec3& vector);
-
-        template<typename T>
-        vec3 operator*(T scalar);
+        vec3 operator-=(const vec3 &vector);
 
         template<typename T>
-        vec3 operator/(T scalar);
+        inline vec3 operator*(T scalar) const {
+            return {x * scalar, y * scalar, z * scalar};
+        }
+
+        template<typename T>
+        inline vec3 operator/(T scalar) const {
+            return {x / scalar, y / scalar, z / scalar};
+        }
 
         friend std::ostream &operator<<(std::ostream &os, const vec3 &v);
     };

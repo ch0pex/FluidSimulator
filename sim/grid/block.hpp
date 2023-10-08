@@ -4,14 +4,16 @@
 
 
 namespace sim {
-    struct Block {
+    class Block {
     public:
         Block();
+        void AddParticle(size_t id, vec3& position, vec3& hv, vec3& velocity);
+    private:
         bool is_computed;
         //Particles
-        std::vector<size_t> ids;
-        std::vector<vec3> positions;
-        std::vector<vec3> hvs;
-        std::vector<vec3> velocities;
+        std::vector<size_t> ids_;
+        std::vector<vec3> positions_;
+        std::vector<vec3> hvs_;
+        std::vector<vec3> velocities_;
     };
 }
