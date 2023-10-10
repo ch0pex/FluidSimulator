@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/CMakeFiles/gsl-populate"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/CMakeFiles/gsl-populate.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/CMakeFiles/gsl-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-build.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-download.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-install.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-test.rule"
+		},
+		{
+			"file" : "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/gsl-subbuild/gsl-populate-prefix/src/gsl-populate-stamp/gsl-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"gsl-populate"
+		],
+		"name" : "gsl-populate"
+	}
+}

@@ -162,8 +162,8 @@ namespace sim {
     }
 
     /**
-     *
-     * @return
+     * Convierte el objeto de la clase `ofld` en un valor booleano.
+     * @return `true` si el archivo de salida está abierto, `false` en caso contrario.
      */
     ofld::operator bool() const {
         return output_file_.is_open();

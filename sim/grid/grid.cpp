@@ -6,6 +6,14 @@
 
 
 namespace sim {
+
+   /**
+   * Constructor de la clase Grid
+   *
+   * @param np número total de partículas
+   * @param ppm partículas por metro, la densidad de partículas en el grid
+   * @param data vector que contiene las posiciones y características de las partículas.
+   */
     Grid::Grid(int np, double ppm, std::vector<vec3> &data)
             : np_(np), ppm_(ppm),
               h_(MUL_RAD / ppm_),
@@ -22,6 +30,8 @@ namespace sim {
                           }),
               blocks_(static_cast<size_t>(grid_size_.x * grid_size_.y * grid_size_.z)) {
         InitMessage();
+
+        // Itera a través de los datos de las partículas y asigna cada partícula a un bloque en la cuadrícula.
         for(size_t i = 0; i < data.size(); i+=3) {
            const size_t block_index = GetBlockIndex(data[i]); //Coger la posicion de la particula comprobar en que bloque le toca
            blocks_[block_index].AddParticle(i/3, data[i], data[i + 1], data[i + 2]); //Anadir la particula a dicho bloque
@@ -38,12 +48,19 @@ namespace sim {
         std::cout << "Block size: " << block_size_ << "\n";
     }
 
+     /**
+     * Obtiene el índice del bloque al que pertenece una partícula
+     *
+     * @param particle_pos posición de la partícula en coordenadas x,y,z
+     * @return índice del bloque al que pertenece la partícula en la cuadrícula.
+     */
     size_t Grid::GetBlockIndex(vec3 &particle_pos) {
         // i,j,k posicion del bloque en la malla --> pasarlo al indice del bloque
         double pos_i = (particle_pos.x - BOTTOM_LIMIT.x) / block_size_.x;
         double pos_j = (particle_pos.y - BOTTOM_LIMIT.y) / block_size_.y;
         double pos_k = (particle_pos.z - BOTTOM_LIMIT.z) / block_size_.z;
 
+        // Asegura que las coordenadas estén dentro de los límites de la cuadrícula
         pos_i = pos_i >= 0 ? pos_i : 0;
         pos_i = pos_i < grid_size_.x ? pos_i : grid_size_.x;
         pos_j = pos_j >= 0 ? pos_j : 0;
@@ -51,6 +68,7 @@ namespace sim {
         pos_k = pos_k >= 0 ? pos_k : 0;
         pos_k = pos_k < grid_size_.z ? pos_k : grid_size_.z;
 
+        // Calcula el índice del bloque utilizando las coordenadas en la cuadrícula.
         return (static_cast<size_t>(pos_i) + static_cast<size_t>(pos_j) * static_cast<size_t>(grid_size_.y) + static_cast<size_t>(pos_k) * static_cast<size_t>(grid_size_.z));
     }
 }

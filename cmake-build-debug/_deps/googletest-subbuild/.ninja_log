@@ -1,0 +1,21 @@
+# ninja log v5
+0	13	1696966602899085125	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	4396466a12b29ebb
+0	13	1696966602899085125	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	4396466a12b29ebb
+13	2762	1696966605648112745	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	965caa137444bf95
+13	2762	1696966605648112745	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	965caa137444bf95
+2762	2799	0	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	252f0318962fba4c
+2762	2799	0	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update	252f0318962fba4c
+2799	2809	1696966605694981096	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	331b644a3770a109
+2799	2809	1696966605694981096	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch	331b644a3770a109
+2809	2818	1696966605703858579	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	11958247bd871aa5
+2809	2818	1696966605703858579	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	11958247bd871aa5
+2818	2827	1696966605712864975	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	2abdf79fa30db7ac
+2818	2827	1696966605712864975	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	2abdf79fa30db7ac
+2827	2836	1696966605722373067	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	ebc5a6193ebe360
+2827	2836	1696966605722373067	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	ebc5a6193ebe360
+2836	2845	1696966605731311631	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	5537820d5ab44e1c
+2836	2845	1696966605731311631	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	5537820d5ab44e1c
+2845	2858	1696966605743846730	CMakeFiles/googletest-populate-complete	f51f235313206b9b
+2845	2858	1696966605743846730	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	f51f235313206b9b
+2845	2858	1696966605743846730	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	f51f235313206b9b
+2845	2858	1696966605743846730	/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	f51f235313206b9b
