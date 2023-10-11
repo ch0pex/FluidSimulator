@@ -1,5 +1,0 @@
-if(EXISTS "/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/ftest/ftest[1]_tests.cmake")
-  include("/Users/marinabuitrago/Desktop/UC3M/UC3M-23-24/arqui/ArquiCompP1/cmake-build-debug/ftest/ftest[1]_tests.cmake")
-else()
-  add_test(ftest_NOT_BUILT ftest_NOT_BUILT)
-endif()
