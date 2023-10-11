@@ -1,17 +1,18 @@
 #include "fld.hpp"
 
+#include "sim/utils/constants.hpp"
+
 #include <array>
 #include <cstring>
 #include <iostream>
-#include "sim/utils/constants.hpp"
 
 namespace sim {
     /**
-     * Constructor explicito de la clase cuando se proporciona una path, se abre el archivo directamente
-     * con permisos de lectura
+     * Constructor explicito de la clase cuando se proporciona una path, se abre el archivo
+     * directamente con permisos de lectura
      * @param path: Ruta del archivo que se desea leer
      */
-    ifld::ifld(const std::string &path) : length_(0) {
+    ifld::ifld(std::string const &path) : length_(0) {
         Open(path);
     }
 
@@ -32,7 +33,7 @@ namespace sim {
      * Abre el fichero .fld como archivo binario con permisos de lectura, cambia el valor length
      * @param path: archivo .fld que se desea abrir
      */
-    void ifld::Open(const std::string &path) { // TODO: Comprobar que el fichero es .fld?
+    void ifld::Open(std::string const &path) {  // TODO: Comprobar que el fichero es .fld?
         if (!input_file_.is_open()) {
             input_file_.open(path, std::ios::binary);
             input_file_.seekg(0, std::ifstream::end);
@@ -45,34 +46,34 @@ namespace sim {
      * Cierra el archivo .fld si esta abierto
      */
     void ifld::Close() {
-        if (input_file_.is_open()) {
-            input_file_.close();
-        }
+        if (input_file_.is_open()) { input_file_.close(); }
     }
 
     /**
      * Lee el header del archivo y guarda sus valores si son correctos en los parametros
      * @param ppm  Referencia donde se guarda las particulas por metro especificadas en el header
      * @param np Referencia donde se guarda el numero de particulas especificado en el header
-     * @return Si el numero de particulas es menor que 0 o no coincide con las particulas encontradas en el archivo
-     * se devuelve PARTICLE_NUM_ERR (-5), en caso de exito se devuelve SUCCESS (0)
+     * @return Si el numero de particulas es menor que 0 o no coincide con las particulas encontradas
+     * en el archivo se devuelve PARTICLE_NUM_ERR (-5), en caso de exito se devuelve SUCCESS (0)
      */
     sim::error_code ifld::ReadHeader(double &ppm, int &np) {
         float tmp = 0.0F;
 
         input_file_.seekg(0, std::ifstream::beg);
-        input_file_.read( reinterpret_cast<char*>(&tmp), sizeof(float));
+        input_file_.read(reinterpret_cast<char *>(&tmp), sizeof(float));
         ppm = static_cast<double>(tmp);
-        input_file_.read(reinterpret_cast<char*>(&np), sizeof(float));
+        input_file_.read(reinterpret_cast<char *>(&np), sizeof(float));
         if (np <= 0) {
             std::cout << "Invalid number of particles\n";
             return (PARTICLE_NUM_ERR);
         }
         // En cada partícula tenemos 9 números (3 vectores con 3 datos)
-        // si np es distinto del número de floats partido de 9, el número de partículas del header no coincide con las del archivo
-        if (static_cast<size_t>(np) != ((length_ - SIZE_HEADER) / sizeof(float)) / PARTICLE_COMPONENTS) {
-            std::cout << "Number of particles mismatch. Header: " << np << " Found: " << ((length_ - SIZE_HEADER) / 4) / PARTICLE_COMPONENTS
-                      << "\n";
+        // si np es distinto del número de floats partido de 9, el número de partículas del header no
+        // coincide con las del archivo
+        if (static_cast<size_t>(np) !=
+            ((length_ - SIZE_HEADER) / sizeof(float)) / PARTICLE_COMPONENTS) {
+            std::cout << "Number of particles mismatch. Header: " << np
+                      << " Found: " << ((length_ - SIZE_HEADER) / 4) / PARTICLE_COMPONENTS << "\n";
             return (PARTICLE_NUM_ERR);
         }
         return (SUCCESS);
@@ -80,20 +81,27 @@ namespace sim {
 
     /**
      * Lee todas las particulas almacenadas en el fichero inicial
-     * @return Devuelve las particulas en un vector (esto no es un problema a partir de la version C++11)
+     * @return Devuelve las particulas en un vector (esto no es un problema a partir de la version
+     * C++11)
      */
-    std::vector<vec3> ifld::ReadParticles() {
-        std::vector<vec3> particles_vectors;
+    std::vector<Particle> ifld::ReadParticles() {
+        std::vector<Particle> particles;
         std::vector<float> tmp((length_ - SIZE_HEADER) / sizeof(float));
+        vec3 position;
+        vec3 vec_hv;
+        vec3 velocity;
 
-        particles_vectors.reserve((length_ - SIZE_HEADER) / sizeof(float));
+        particles.reserve((length_ - SIZE_HEADER) / 9); // numero de componentes de una particula
         input_file_.seekg(SIZE_HEADER, std::ifstream::beg);
-        input_file_.read(reinterpret_cast<char*>(tmp.data()),length_ - SIZE_HEADER); // if (!input_file_) return SOME_ERROR?
-        for (size_t i = 0; i < tmp.size(); i+=3) {
-            particles_vectors.emplace_back(tmp[i], tmp[i + 1], tmp[i + 2]);
+        input_file_.read(reinterpret_cast<char *>(tmp.data()), length_ - SIZE_HEADER);
+        for (size_t i = 0; i < tmp.size(); i += 9) {
+            position = {tmp[i], tmp[i + 1], tmp[i + 2]};
+            vec_hv = {tmp[i], tmp[i + 1], tmp[i + 2]};
+            velocity = {tmp[i], tmp[i + 1], tmp[i + 2]};
+            particles.emplace_back(i / 9, position, vec_hv, velocity);
         }
 
-        return (particles_vectors); // NO se si tiene coste creo que no
+        return (particles);  // NO se si tiene coste creo que no
     }
 
     /**
@@ -104,13 +112,12 @@ namespace sim {
         return input_file_.is_open();
     }
 
-
     /**
      * Constructor explicito de la clase cuando se proporciona una path, se abre el archivo
      * directamente con permisos escritura
      * @param path
      */
-    ofld::ofld(const std::string &path) {
+    ofld::ofld(std::string const &path) {
         Open(path);
     }
 
@@ -130,19 +137,15 @@ namespace sim {
      * Abre el fichero .fld como archivo binario con permisos de escritura
      * @param path: archivo .fld en el que se desea escribir
      */
-    void ofld::Open(const std::string &path) {
-        if (!output_file_.is_open()) {
-            output_file_.open(path, std::ios::binary);
-        }
+    void ofld::Open(std::string const &path) {
+        if (!output_file_.is_open()) { output_file_.open(path, std::ios::binary); }
     }
 
     /**
      * Cierra el archivo .fld si esta abierto
      */
     void ofld::Close() {
-        if (output_file_.is_open()) {
-            output_file_.close();
-        }
+        if (output_file_.is_open()) { output_file_.close(); }
     }
 
     /**
@@ -162,12 +165,11 @@ namespace sim {
     }
 
     /**
-     * Convierte el objeto de la clase `ofld` en un valor booleano.
-     * @return `true` si el archivo de salida está abierto, `false` en caso contrario.
+     *
+     * @return
      */
     ofld::operator bool() const {
         return output_file_.is_open();
     }
 
-
-}
+}  // namespace sim

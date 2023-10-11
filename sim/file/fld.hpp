@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "sim/utils/error.hpp"
-#include "sim/utils/vector.hpp"
+#include "sim/grid/particle.hpp"
 
 namespace sim {
     /// Clase encargada de la lectura de fichero .fld
@@ -23,7 +23,7 @@ namespace sim {
 
         sim::error_code ReadHeader(double &ppm, int &np);
 
-        std::vector<vec3> ReadParticles();
+        std::vector<Particle> ReadParticles();
 
 
         operator bool() const;

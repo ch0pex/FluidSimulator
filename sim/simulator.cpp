@@ -35,18 +35,17 @@ namespace sim {
         if (err != SUCCESS) {
             return (err);
         }
-
         return (err);
     }
 
     /**
-     * Representa la segunda fase de la simulacion, donde se inicializa la simulacion, se lee el fichero de entrada y
-     * se inicializa el grid con dicha informacion
+     * Representa la segunda fase de la simulacion, donde se inicializa la simulacion, se lee el
+     * fichero de entrada y se inicializa el grid con dicha informacion
      * @return
      */
     sim::error_code Simulator::InitSim() {
         sim::error_code err = SUCCESS;
-        std::vector<vec3> particles_data;
+        std::vector<Particle> particles;
         int num_particles = 0;
         double ppm = 0.0;
 
@@ -55,29 +54,28 @@ namespace sim {
             return (err);
         }
 
-        particles_data = init_file_.ReadParticles();
-        grid_.emplace(num_particles, ppm, particles_data);
+        particles = init_file_.ReadParticles();
+        grid_.emplace(num_particles, ppm, particles);
         return (err);
     }
+        /**
+         * Representa la tercera fase de la simulacion, donde se procesan los calculos necesarios tantas veces como el
+         * usuario indico por argumento
+         * @return
+         */
+        sim::error_code Simulator::ProcessSim() {
+            for (int i = 0; i < nts_; i++) {
 
-    /**
-     * Representa la tercera fase de la simulacion, donde se procesan los calculos necesarios tantas veces como el
-     * usuario indico por argumento
-     * @return
-     */
-    sim::error_code Simulator::ProcessSim() {
-        for (int i = 0; i < nts_; i++) {
-
+            }
+            return (SUCCESS);
         }
-        return (SUCCESS);
-    }
 
-    /**
-     * Representa la ultima fase de la simulacion, se almacenan los resultados en el fichero especificado por parametro
-     * @return
-     */
-    sim::error_code Simulator::StoreResults() {
-        return (SUCCESS);
-    }
+        /**
+         * Representa la ultima fase de la simulacion, se almacenan los resultados en el fichero especificado por parametro
+         * @return
+         */
+        sim::error_code Simulator::StoreResults() {
+            return (SUCCESS);
+        }
 
-}
+    }  // namespace sim
