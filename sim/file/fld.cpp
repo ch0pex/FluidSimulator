@@ -94,11 +94,11 @@ namespace sim {
         particles.reserve((length_ - SIZE_HEADER) / 9); // numero de componentes de una particula
         input_file_.seekg(SIZE_HEADER, std::ifstream::beg);
         input_file_.read(reinterpret_cast<char *>(tmp.data()), length_ - SIZE_HEADER);
-        for (size_t i = 0; i < tmp.size(); i += 9) {
+        for (size_t i = 0; i < tmp.size(); i += PARTICLE_COMPONENTS) {
             position = {tmp[i], tmp[i + 1], tmp[i + 2]};
-            vec_hv = {tmp[i], tmp[i + 1], tmp[i + 2]};
-            velocity = {tmp[i], tmp[i + 1], tmp[i + 2]};
-            particles.emplace_back(i / 9, position, vec_hv, velocity);
+            vec_hv = {tmp[i + 3], tmp[i + 4], tmp[i + 5]};
+            velocity = {tmp[i + 6], tmp[i + 7], tmp[i + 8]};
+            particles.emplace_back(i / PARTICLE_COMPONENTS, position, vec_hv, velocity);
         }
 
         return (particles);  // NO se si tiene coste creo que no
@@ -152,7 +152,10 @@ namespace sim {
      *
      * @return
      */
-    sim::error_code ofld::WriteHeader() {
+    sim::error_code ofld::WriteHeader(int np, double ppm) {
+        auto particle_per_meter = static_cast<float>(ppm);
+        output_file_.write(reinterpret_cast<char*>(&np), sizeof(int));
+        output_file_.write(reinterpret_cast<char*>(&particle_per_meter), sizeof(float));
         return (SUCCESS);
     }
 
@@ -160,7 +163,20 @@ namespace sim {
      *
      * @return
      */
-    sim::error_code ofld::WriteParticles() {
+    sim::error_code ofld::WriteParticles(std::vector<Particle*> &particles) {
+        std::array<float,PARTICLE_COMPONENTS> tmp_values{};
+        for(auto& particle : particles) {
+            tmp_values[0] = static_cast<float>(particle->position.x);
+            tmp_values[1] = static_cast<float>(particle->position.y);
+            tmp_values[2] = static_cast<float>(particle->position.z);
+            tmp_values[3] = static_cast<float>(particle->hv.x);
+            tmp_values[4] = static_cast<float>(particle->hv.y);
+            tmp_values[5] = static_cast<float>(particle->hv.z);
+            tmp_values[6] = static_cast<float>(particle->velocity.x);
+            tmp_values[7] = static_cast<float>(particle->velocity.y);
+            tmp_values[8] = static_cast<float>(particle->velocity.z);
+            output_file_.write(reinterpret_cast<char*>(tmp_values.data()), sizeof(float) * PARTICLE_COMPONENTS);
+        }
         return (SUCCESS);
     }
 
@@ -171,5 +187,7 @@ namespace sim {
     ofld::operator bool() const {
         return output_file_.is_open();
     }
+
+
 
 }  // namespace sim

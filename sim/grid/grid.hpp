@@ -12,12 +12,18 @@ namespace sim {
     public:
         Grid(int np, double ppm, std::vector<Particle> &particles);
 
+        [[nodiscard]] int GetNumParticles() const;
+
+        [[nodiscard]] double GetParticlesPerMeter() const;
+
+        [[nodiscard]] std::vector<Block>& GetBlocks();
+
     private:
         void InitMessage() const;
 
         size_t GetBlockIndex(vec3 &particle_pos) const;
 
-        double np_;
+        int np_;
         double ppm_;
         double h_;
         double m_;

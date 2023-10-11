@@ -15,5 +15,9 @@ namespace sim {
         particles_.push_back(particle);
     }
 
+    std::vector<Particle> & Block::GetParticles(){
+        return particles_;
+    }
+
 
 }

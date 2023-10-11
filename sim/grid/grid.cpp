@@ -67,4 +67,16 @@ namespace sim {
                 static_cast<size_t>(pos_j) * static_cast<size_t>(grid_size_.x) +
                 static_cast<size_t>(pos_k) * static_cast<size_t>(grid_size_.x) * static_cast<size_t>(grid_size_.y));
     }
+
+    int Grid::GetNumParticles() const {
+        return np_;
+    }
+
+    double Grid::GetParticlesPerMeter() const {
+        return ppm_;
+    }
+
+    std::vector<Block>& Grid::GetBlocks() {
+        return blocks_;
+    }
 }  // namespace sim

@@ -9,9 +9,9 @@ namespace sim {
     public:
         Block() = default;
         void AddParticle(Particle& particle);
+        [[nodiscard]] std::vector<Particle>& GetParticles();
 
     private:
         std::vector<Particle> particles_;
-
     };
 }
