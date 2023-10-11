@@ -36,22 +36,23 @@ if [ "$SPECIFIED_OUTPUT" = false ]; then
 fi
 
 if $DEBUG; then
-  COMMAND="/usr/bin/perf stat /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-debug/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld"
+  COMMAND="/usr/bin/perf stat ./scripts/run.sh $REPEATS /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-debug/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld"
 else
-  COMMAND="/usr/bin/perf stat /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-release/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld"
+  COMMAND="/usr/bin/perf stat ./scripts/run.sh $REPEATS /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-release/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld"
 fi
 
 if $SAVE_TO_FILE; then
-    echo "$MESSAGE" > "$OUTPUT_FILE"
+    if $DEBUG; then
+      echo "$MESSAGE (Debug mode)" > "$OUTPUT_FILE"
+    else
+      echo "$MESSAGE (Release mode)" > "$OUTPUT_FILE"
+    fi
     echo "--------------------------------------------------" >> "$OUTPUT_FILE"
-    for (( i=1; i<=$REPEATS; i++ ))
-    do
       {
-        echo "Ejecución $i:" >> "$OUTPUT_FILE"
+        echo "Ejecuciones: $REPEATS" >> "$OUTPUT_FILE"
         $COMMAND
         echo "--------------------------------------------------" >> "$OUTPUT_FILE"
       } 2>&1 | tee -a "$OUTPUT_FILE"
-    done
 else
     # Si no se decide guardar en un archivo, simplemente ejecuta el comando y muestra la salida en la terminal
     $COMMAND

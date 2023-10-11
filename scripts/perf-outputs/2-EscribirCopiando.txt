@@ -1,0 +1,22 @@
+Rendimmiento escritura copiando (Release mode)
+--------------------------------------------------
+Ejecuciones: 5000
+
+ Performance counter stats for './scripts/run.sh 5000 /home/alvaro/CLionProjects/ArquiCompP1/cmake-build-release/fluid/fluid 10 /home/alvaro/CLionProjects/ArquiCompP1/res/large.fld /home/alvaro/CLionProjects/ArquiCompP1/res/final.fld':
+
+         24.694,25 msec task-clock                       #    0,988 CPUs utilized             
+             8.812      context-switches                 #  356,844 /sec                      
+               816      cpu-migrations                   #   33,044 /sec                      
+         8.607.892      page-faults                      #  348,579 K/sec                     
+   118.291.115.350      cycles                           #    4,790 GHz                       
+   126.073.324.997      instructions                     #    1,07  insn per cycle            
+    23.700.342.752      branches                         #  959,751 M/sec                     
+       329.863.758      branch-misses                    #    1,39% of all branches           
+
+      24,991214783 seconds time elapsed
+
+      11,211793000 seconds user
+      13,567252000 seconds sys
+
+
+--------------------------------------------------

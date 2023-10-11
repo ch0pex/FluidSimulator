@@ -163,18 +163,18 @@ namespace sim {
      *
      * @return
      */
-    sim::error_code ofld::WriteParticles(std::vector<Particle*> &particles) {
+    sim::error_code ofld::WriteParticles(std::vector<Particle> &particles) {
         std::array<float,PARTICLE_COMPONENTS> tmp_values{};
         for(auto& particle : particles) {
-            tmp_values[0] = static_cast<float>(particle->position.x);
-            tmp_values[1] = static_cast<float>(particle->position.y);
-            tmp_values[2] = static_cast<float>(particle->position.z);
-            tmp_values[3] = static_cast<float>(particle->hv.x);
-            tmp_values[4] = static_cast<float>(particle->hv.y);
-            tmp_values[5] = static_cast<float>(particle->hv.z);
-            tmp_values[6] = static_cast<float>(particle->velocity.x);
-            tmp_values[7] = static_cast<float>(particle->velocity.y);
-            tmp_values[8] = static_cast<float>(particle->velocity.z);
+            tmp_values[0] = static_cast<float>(particle.position.x);
+            tmp_values[1] = static_cast<float>(particle.position.y);
+            tmp_values[2] = static_cast<float>(particle.position.z);
+            tmp_values[3] = static_cast<float>(particle.hv.x);
+            tmp_values[4] = static_cast<float>(particle.hv.y);
+            tmp_values[5] = static_cast<float>(particle.hv.z);
+            tmp_values[6] = static_cast<float>(particle.velocity.x);
+            tmp_values[7] = static_cast<float>(particle.velocity.y);
+            tmp_values[8] = static_cast<float>(particle.velocity.z);
             output_file_.write(reinterpret_cast<char*>(tmp_values.data()), sizeof(float) * PARTICLE_COMPONENTS);
         }
         return (SUCCESS);

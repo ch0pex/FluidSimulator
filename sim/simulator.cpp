@@ -76,13 +76,13 @@ namespace sim {
          */
         sim::error_code Simulator::StoreResults() {
             const int num_particles = grid_->GetNumParticles();
-            std::vector<Particle*> results(num_particles);
+            std::vector<Particle> results(num_particles);
 
             final_file_.WriteHeader(num_particles, grid_->GetParticlesPerMeter());
 
             for(auto& block: grid_->GetBlocks()){
                for(auto& particle : block.GetParticles()){
-                   results[particle.id] = &particle;
+                   results[particle.id] = particle;
                }
             }
 

@@ -22,4 +22,14 @@ namespace sim {
               acceleration({0.0, 0.0, 0.0}),
               density(0) {
     }
+
+    Particle& Particle::operator=(const Particle& other) {
+        if(this != &other){
+            id = other.id;
+            position = other.position;
+            hv = other.hv;
+            velocity = other.velocity;
+        }
+        return *this;
+    }
 }
