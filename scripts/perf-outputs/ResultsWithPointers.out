@@ -1,0 +1,22 @@
+--------------------------------------------------
+Ejecuciones: 2000
+Copiando los resultados a un vector
+--------------------------------------------------
+
+ Performance counter stats for './scripts/remote/run.sh 2000 build/fluid/fluid 10 res/large.fld res/final.fld':
+
+         36.680,46 msec task-clock                #    0,254 CPUs utilized          
+            26.117      context-switches          #    0,712 K/sec                  
+             2.037      cpu-migrations            #    0,056 K/sec                  
+         3.406.702      page-faults               #    0,093 M/sec                  
+    86.396.934.401      cycles                    #    2,355 GHz                    
+   116.722.549.551      instructions              #    1,35  insn per cycle         
+    19.003.188.288      branches                  #  518,074 M/sec                  
+       137.003.384      branch-misses             #    0,72% of all branches        
+
+     144,530776693 seconds time elapsed
+
+      29,062108000 seconds user
+       8,197757000 seconds sys
+
+

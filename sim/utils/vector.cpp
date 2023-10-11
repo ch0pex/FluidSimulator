@@ -61,6 +61,6 @@ namespace sim {
     std::ostream &operator<<(std::ostream &os, const vec3 &v) {
         os << v.x << " x " << v.y << " x " << v.z;
         return os;
-    };
+    }
 
 }

@@ -12,6 +12,16 @@ namespace sim {
     public:
         Grid(int np, double ppm, std::vector<Particle> &particles);
 
+        void Repositioning();
+
+        void CalcForces();
+
+        void ProcessCollisions();
+
+        void MoveParticles();
+
+        void ProcessLimits();
+
         [[nodiscard]] int GetNumParticles() const;
 
         [[nodiscard]] double GetParticlesPerMeter() const;
