@@ -39,8 +39,10 @@ namespace sim {
         double m_;
         vec3 grid_size_;   // n_x, n_y, n_z
         vec3 block_size_;  // s_x, s_y, s_z
+        size_t num_blocks_;
 
         std::vector<Block> blocks_;
+        std::vector<std::vector<size_t>> adjacent_blocks_;
     };
 }  // namespace sim
 

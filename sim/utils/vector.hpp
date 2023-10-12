@@ -6,14 +6,15 @@
 
 /// Vector de tres dimiensiones
 namespace sim {
+    template<typename DataType>
     struct vec3 {
-        double x, y, z;
+        DataType x, y, z;
 
         template<typename T>
-        vec3(T _x, T _y, T _z)
-                : x(static_cast<double>(_x)),
-                  y(static_cast<double>(_y)),
-                  z(static_cast<double>(_z)) {
+        vec3<DataType>(T _x, T _y, T _z)
+                : x(static_cast<DataType>(_x)),
+                  y(static_cast<DataType>(_y)),
+                  z(static_cast<DataType>(_z)) {
         }
 
         vec3();
@@ -40,5 +41,6 @@ namespace sim {
 
         friend std::ostream &operator<<(std::ostream &os, const vec3 &v);
     };
+    using vec3d = vec3<double>;
 }
 #endif //FLUID_VECTOR_HPP

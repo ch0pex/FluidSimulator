@@ -5,13 +5,13 @@
 #include "particle.hpp"
 
 namespace sim {
-    Particle::Particle(size_t _id, sim::vec3 &_position, sim::vec3 &_hv, sim::vec3 &_velocity)
+    Particle::Particle(size_t _id, vec3 &_position, vec3 &_hv, vec3 &_velocity)
             : id(_id),
               position(_position),
               hv(_hv),
               velocity(_velocity),
-              acceleration({0.0, 0.0, 0.0}),
-              density(0) {
+              acceleration({0.0, 0.0, 0.0})
+              {
     }
 
     Particle::Particle(const sim::Particle &other)
@@ -19,8 +19,8 @@ namespace sim {
               position(other.position),
               hv(other.hv),
               velocity(other.velocity),
-              acceleration({0.0, 0.0, 0.0}),
-              density(0) {
+              acceleration({0.0, 0.0, 0.0})
+              {
     }
 
     Particle& Particle::operator=(const Particle& other) {

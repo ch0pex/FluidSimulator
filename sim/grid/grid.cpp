@@ -16,17 +16,21 @@ namespace sim {
                                   (TOP_LIMIT.y - BOTTOM_LIMIT.y) / grid_size_.y,
                                   (TOP_LIMIT.z - BOTTOM_LIMIT.z) / grid_size_.z,
                           }),
-              blocks_(static_cast<size_t>(grid_size_.x * grid_size_.y * grid_size_.z)) {
-        //InitMessage(); Descomentar cuando se ejecute definitvamente el programa, comentar para debugear y perf stat
+              num_blocks_(grid_size_.x * grid_size_.y * grid_size_.z),
+              blocks_(num_blocks_) {
+        std::array<size_t, 3> grid_size { static_cast<size_t>(grid_size_.x), static_cast<size_t>(grid_size_.y), static_cast<size_t>(grid_size_.z) }; //InitMessage(); Descomentar cuando se ejecute definitvamente el programa, comentar para debugear y perf stat
         for (auto &particle: particles) {
-            size_t const block_index = GetBlockIndex(
-                    particle.position);  // Coger la posicion de la particula comprobar en que bloque le toca
+            size_t const block_index = GetBlockIndex( particle.position);  // Coger la posicion de la particula comprobar en que bloque le toca
             blocks_[block_index].AddParticle(particle);  // Anadir la particula a dicho bloque
+        }
+        for(size_t i = 0; i < num_blocks_; ++i) {
+            //Se calculan los bloques adjacentes para cada bloque
+            blocks_[i].CalculateAdjacent(i, grid_size_, num_blocks_);
         }
     }
 
     void Grid::Repositioning() {
-        std::vector<Block> aux(blocks_.size());
+        std::vector<Block> aux(num_blocks_);
 
         for(auto& block : blocks_) {
            for(auto& particle : block.GetParticles()){
@@ -37,7 +41,16 @@ namespace sim {
     }
 
     void Grid::CalcForces() {
+        // Las densisdes y aceleraciones no son copiadas en el grid auxiliar por lo que ya son 0
+        for(size_t i = 0; i < num_blocks_; ++i) {
+            // Incremento de densidades
+            // Tranformacion de densidad
+            // Transferencia de la aceleracion
+            for(auto& index : adjacent_blocks_[i]){
 
+            }
+
+        }
     }
 
     void Grid::ProcessCollisions() {
@@ -58,7 +71,7 @@ namespace sim {
         std::cout << "Smoothing length: " << h_ << "\n";
         std::cout << "Particles Mass: " << m_ << "\n";
         std::cout << "Grid size: " << grid_size_ << "\n";
-        std::cout << "Number of blocks: " << blocks_.size() << "\n";
+        std::cout << "Number of blocks: " << num_blocks_ << "\n";
         std::cout << "Block size: " << block_size_ << "\n";
     }
 

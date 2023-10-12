@@ -1,0 +1,15 @@
+Tiempo de ejecucion de Repositioning con un vector auxiliar de bloques
+
+ Performance counter stats for 'build/fluid/fluid 10 res/large.fld res/final.fld' (2000 runs):
+
+             63,81 msec task-clock                #    0,536 CPUs utilized            ( +-  0,14% )
+                13      context-switches          #    0,211 K/sec                    ( +-  0,25% )
+                 1      cpu-migrations            #    0,009 K/sec                    ( +-  2,70% )
+             1.842      page-faults               #    0,029 M/sec                    ( +-  0,16% )
+       190.427.265      cycles                    #    2,984 GHz                      ( +-  0,01% )
+       289.809.215      instructions              #    1,52  insn per cycle           ( +-  0,00% )
+        49.563.957      branches                  #  776,699 M/sec                    ( +-  0,00% )
+           265.458      branch-misses             #    0,54% of all branches          ( +-  0,03% )
+
+         0,1189935 +- 0,0000975 seconds time elapsed  ( +-  0,08% )
+

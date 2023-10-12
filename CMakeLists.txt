@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26) # Compile with 3.26 in Avignon
+cmake_minimum_required(VERSION 3.25) # Compile with 3.26 in Avignon
 project(fluid LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)

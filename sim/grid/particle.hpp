@@ -6,7 +6,6 @@
 
 namespace sim {
     struct Particle {
-        Particle() = default;
 
         Particle(size_t _id, vec3 &_position, vec3 &_hv, vec3 &_velocity);
 
@@ -14,12 +13,16 @@ namespace sim {
 
         Particle& operator=(const Particle& other);
 
-
         size_t id;
+
         vec3 position;
+
         vec3 hv;
+
         vec3 velocity;
+
         vec3 acceleration;
+
         double density;
     };
 }

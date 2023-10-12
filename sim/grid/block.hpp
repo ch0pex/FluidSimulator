@@ -10,8 +10,10 @@ namespace sim {
         Block() = default;
         void AddParticle(Particle& particle);
         [[nodiscard]] std::vector<Particle>& GetParticles();
+        void CalculateAdjacent(size_t index, std::array<size_t,3>& grid_size);
 
     private:
         std::vector<Particle> particles_;
+        std::vector<size_t> adjacent_blocks_;
     };
 }
