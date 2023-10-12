@@ -1,32 +1,32 @@
 #ifndef ARQUICOMP_P1_PROARGS_HPP
 #define ARQUICOMP_P1_PROARGS_HPP
 
-#include <cstdint>
-#include <string_view>
-#include <span>
-
 #include "sim/file/fld.hpp"
 #include "sim/utils/error.hpp"
 
+#include <cstdint>
+#include <span>
+#include <string_view>
+
 namespace sim {
-    ///Clase encargada de comprobar los argumentos pasados por el usuario para ejecucion del programa
-    class Proargs {
+  /// Clase encargada de comprobar los argumentos pasados por el usuario para ejecucion del programa
+  class Proargs {
     public:
-        explicit Proargs(std::span<const char *> args);
+      explicit Proargs(std::span<char const *> args);
 
-        [[nodiscard]] sim::error_code CheckCount() const;
+      [[nodiscard]] sim::error_code CheckCount() const;
 
-        sim::error_code CheckNts(int &nts);
+      sim::error_code CheckNts(int & nts);
 
-        sim::error_code CheckOpenFiles(sim::ifld &init_file, sim::ofld &final_file);
+      sim::error_code CheckOpenFiles(sim::ifld & init_file, sim::ofld & final_file);
 
-        inline std::string GetInitPath() { return args_.at(2); };
+      inline std::string GetInitPath() { return args_.at(2); };
 
-        inline std::string GetFinalPath() { return args_.at(3); };
+      inline std::string GetFinalPath() { return args_.at(3); };
 
     private:
-        std::vector<const char *> args_;
-    };
-}
+      std::vector<char const *> args_;
+  };
+}  // namespace sim
 
-#endif //ARQUICOMP_P1_PROARGS_HPP
+#endif  // ARQUICOMP_P1_PROARGS_HPP

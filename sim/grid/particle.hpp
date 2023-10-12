@@ -1,31 +1,41 @@
 #ifndef FLUID_PARTICLE_HPP
 #define FLUID_PARTICLE_HPP
 
-#include "sim/utils/vector.hpp"
-
+#include "sim/math/vector.hpp"
 
 namespace sim {
-    struct Particle {
 
-        Particle(size_t _id, vec3 &_position, vec3 &_hv, vec3 &_velocity);
+  struct ParticlesData {
+    ParticlesData(double ppm);
+    double particles_per_meter;
+    double smoothing;
+    double smoothing_pow_2;
+    double smoothing_pow_6;
+    double smoothing_pow_9;
+    double mass;
+  };
 
-        Particle(const Particle &);
+  struct Particle {
+      Particle(size_t _id, vec3d & _position, vec3d & _hv, vec3d & _velocity);
 
-        Particle& operator=(const Particle& other);
+      Particle(Particle const &);
 
-        size_t id;
+      void TransformDenisty(const ParticlesData& particles_params);
 
-        vec3 position;
+      Particle & operator=(Particle const & other);
 
-        vec3 hv;
+      size_t id;
 
-        vec3 velocity;
+      vec3d position;
 
-        vec3 acceleration;
+      vec3d hv;
 
-        double density;
-    };
-}
+      vec3d velocity;
 
+      vec3d acceleration;
 
-#endif //FLUID_PARTICLE_HPP
+      double density;
+  };
+}  // namespace sim
+
+#endif  // FLUID_PARTICLE_HPP

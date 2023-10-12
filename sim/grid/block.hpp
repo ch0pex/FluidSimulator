@@ -1,19 +1,22 @@
+#include "sim/grid/particle.hpp"
+#include "sim/math/vector.hpp"
+
 #include <vector>
 
-#include "sim/utils/vector.hpp"
-#include "sim/grid/particle.hpp"
-
-
 namespace sim {
-    class Block {
+  class Block {
     public:
-        Block() = default;
-        void AddParticle(Particle& particle);
-        [[nodiscard]] std::vector<Particle>& GetParticles();
-        void CalculateAdjacent(size_t index, std::array<size_t,3>& grid_size);
+      Block() = default;
+
+      void AddParticle(Particle & particle);
+
+      [[nodiscard]] std::vector<Particle> & GetParticles();
+
+      void CalcForces(const ParticlesData& particles_params);
+
+      void CalcForcesWith(std::vector<Particle> & particles, const ParticlesData& particles_params);
 
     private:
-        std::vector<Particle> particles_;
-        std::vector<size_t> adjacent_blocks_;
-    };
-}
+      std::vector<Particle> particles_;
+  };
+}  // namespace sim

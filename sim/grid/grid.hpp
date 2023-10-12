@@ -2,48 +2,51 @@
 #define ARQUICOMP_P1_GRID_HPP
 
 #include "block.hpp"
-#include "sim/utils/vector.hpp"
 #include "sim/grid/particle.hpp"
+#include "sim/math/vector.hpp"
 
 #include <vector>
 
 namespace sim {
-    class Grid {
+  class Grid {
     public:
-        Grid(int np, double ppm, std::vector<Particle> &particles);
+      Grid(int np, double ppm, std::vector<Particle> & particles);
 
-        void Repositioning();
+      void Repositioning();
 
-        void CalcForces();
+      void CalcForces();
 
-        void ProcessCollisions();
+      void ProcessCollisions();
 
-        void MoveParticles();
+      void MoveParticles();
 
-        void ProcessLimits();
+      void ProcessLimits();
 
-        [[nodiscard]] int GetNumParticles() const;
+      [[nodiscard]] int GetNumParticles() const;
 
-        [[nodiscard]] double GetParticlesPerMeter() const;
+      [[nodiscard]] double GetParticlesPerMeter() const;
 
-        [[nodiscard]] std::vector<Block>& GetBlocks();
+      [[nodiscard]] std::vector<Block> & GetBlocks();
+
+      const ParticlesData& GetParameters();
 
     private:
-        void InitMessage() const;
+      void InitMessage() const;
 
-        size_t GetBlockIndex(vec3 &particle_pos) const;
+      size_t GetBlockIndex(vec3d & particle_pos) const;
 
-        int np_;
-        double ppm_;
-        double h_;
-        double m_;
-        vec3 grid_size_;   // n_x, n_y, n_z
-        vec3 block_size_;  // s_x, s_y, s_z
-        size_t num_blocks_;
+      void CalculateAdjacentBlocks(size_t index);
 
-        std::vector<Block> blocks_;
-        std::vector<std::vector<size_t>> adjacent_blocks_;
-    };
+      int num_particles;
+      ParticlesData particles_param_;
+
+      vec3<size_t> grid_size_;  // n_x, n_y, n_z
+      vec3d block_size_;        // s_x, s_y, s_z
+      size_t num_blocks_;
+
+      std::vector<Block> blocks_;
+      std::vector<std::vector<size_t>> adjacent_blocks_;
+  };
 }  // namespace sim
 
 #endif  // ARQUICOMP_P1_GRID_HPP
