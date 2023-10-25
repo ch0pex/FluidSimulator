@@ -15,11 +15,11 @@ namespace sim {
 
   Particle::Particle(size_t _id, vec3d& _position, vec3d& _hv, vec3d& _velocity)
     : id(_id), position(_position), hv(_hv), velocity(_velocity),
-      acceleration({0.0, 0.0, 0.0}), density(0) { }
+      acceleration(GRAVITY), density(0) { }
 
   Particle::Particle(sim::Particle const & other)
     : id(other.id), position(other.position), hv(other.hv), velocity(other.velocity),
-      acceleration({0.0, 0.0, 0.0}), density(0) { }
+      acceleration(GRAVITY), density(0) { }
 
   Particle & Particle::operator=(Particle const & other) {
     if (this != &other) {

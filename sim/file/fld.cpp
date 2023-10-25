@@ -91,8 +91,7 @@ namespace sim {
     vec3d vec_hv;
     vec3d velocity;
 
-    particles.reserve((length_ - SIZE_HEADER) /
-                      PARTICLE_COMPONENTS);  // numero de componentes de una particula
+    particles.reserve((length_ - SIZE_HEADER) / PARTICLE_COMPONENTS);  // numero de componentes de una particula
     input_file_.seekg(SIZE_HEADER, std::ifstream::beg);
     input_file_.read(reinterpret_cast<char *>(tmp.data()), length_ - SIZE_HEADER);
     for (size_t i = 0; i < tmp.size(); i += PARTICLE_COMPONENTS) {

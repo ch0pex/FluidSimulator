@@ -18,15 +18,16 @@ namespace sim {
       }),
       num_blocks_(grid_size_.x * grid_size_.y * grid_size_.z), blocks_(num_blocks_),
       adjacent_blocks_(num_blocks_) {
-    for (auto & particle : particles) {
-      size_t const block_index = GetBlockIndex(
-          particle.position);  // Coger la posicion de la particula comprobar en que bloque le toca
+    for (auto& particle : particles) {
+      size_t const block_index = GetBlockIndex(particle.position);  // Coger la posicion de la particula comprobar en que bloque le toca
       blocks_[block_index].AddParticle(particle);  // Anadir la particula a dicho bloque
     }
+
     for (size_t i = 0; i < num_blocks_; ++i) {
       // Se calculan los bloques adjacentes para cada bloque
       CalculateAdjacentBlocks(i);
     }
+    // InitMessage(); Comentado para que no moleste en los perf stat
   }
 
   void Grid::Repositioning() {
@@ -44,7 +45,7 @@ namespace sim {
     // Las densisdes y aceleraciones no son copiadas en el grid auxiliar por lo que ya son 0
     for (size_t i = 0; i < num_blocks_; ++i) {
       // Se calculan la densidad y aceleracion entre las particulas de un mismo bloque
-      blocks_[i].CalcForces(particles_param_);
+      blocks_[i].CalcDensities(particles_param_);
       for (auto & index : adjacent_blocks_[i]) {
         // Se calcula la densisdad y aceleracion entre las particulas de bloques adyacentes
         blocks_[i].CalcForcesWith(blocks_[index].GetParticles(), particles_param_);

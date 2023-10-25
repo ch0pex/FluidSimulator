@@ -31,7 +31,7 @@ namespace sim {
 
       vec3<DataType> operator/(DataType scalar) const;
 
-      static double SquaredDistance(const vec3<DataType>& v_1, const vec3<DataType>& v_2);
+      static double SquaredDistance(const vec3<DataType>& v_i, const vec3<DataType>& v_j);
 
       /**
        * imprimir un objeto vec3 en un flujo de salida (como std::cout)

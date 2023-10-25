@@ -21,7 +21,7 @@ namespace sim {
   constexpr double PI = std::numbers::pi;
 
   // Aceleracion externa
-  constexpr vec3d GRAVITY = {0.0, 9.8, 0.0};
+  constexpr vec3d GRAVITY = {0.0, -9.8, 0.0};
   // Límite superior del recinto
   constexpr vec3d BOTTOM_LIMIT = {-0.065, -0.08, -0.065};
   // Límite inferior del recinto

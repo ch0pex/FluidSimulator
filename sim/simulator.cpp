@@ -59,7 +59,7 @@ namespace sim {
   sim::error_code Simulator::ProcessSim() {
     for (int i = 0; i < nts_; i++) {
       grid_->Repositioning();
-      // grid_->CalcForces();
+      // grid_->CalcDensities();
       // grid_->ProcessCollisions();
       // grid_->MoveParticles();
       // grid_->ProcessLimits();

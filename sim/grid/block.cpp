@@ -23,7 +23,7 @@ namespace sim {
     return particles_;
   }
 
-  void Block::CalcForces(const ParticlesData& particles_params) {
+  void Block::CalcDensities(ParticlesData const & particles_params) {
     // Evitamos repetir calculos entre particulas
     double squared_distance = 0.0;
     double density_incriment = 0.0;
@@ -35,13 +35,15 @@ namespace sim {
           density_incriment = pow(particles_params.smoothing_pow_2 - squared_distance, 3);
           // Tranformacion de densidad
           particles_[i].density += density_incriment;
-          particles_[i].TransformDenisty(particles_params);
+          //particles_[i].TransformDenisty(particles_params);
           particles_[j].density += density_incriment;
-          particles_[j].TransformDenisty(particles_params);
+          //particles_[j].TransformDenisty(particles_params);
           // Transferencia de la aceleracion
-
         }
       }
+     for
+
+      particles_[i].TransformDenisty(particles_params);
     }
   }
 
