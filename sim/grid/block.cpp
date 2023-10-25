@@ -23,8 +23,8 @@ namespace sim {
     return particles_;
   }
 
-  void Block::CalcDensities(ParticlesData const & particles_params) {
-    // Evitamos repetir calculos entre particulas
+  void Block::CalcDensities(ParticlesData const & particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks) {
+    // Evitamos repetir calculos entre particulask
     double squared_distance = 0.0;
     double density_incriment = 0.0;
     for (size_t i = 0; i < particles_.size(); ++i) {
@@ -41,7 +41,10 @@ namespace sim {
           // Transferencia de la aceleracion
         }
       }
-     for
+      for(auto& index : adjacents) {
+        CalcForcesWith(blocks[index].GetParticles());
+      }
+
 
       particles_[i].TransformDenisty(particles_params);
     }
