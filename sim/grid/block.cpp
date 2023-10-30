@@ -48,10 +48,8 @@ namespace sim {
         Particle::IncrementAccelerations(particles_params, particles_[i], particles_[j]);
       }
       for(auto& adjacent_index : adjacents) {
-        if(adjacent_index > block_index) { //Solo se hacen los calculos con los bloques adjacentes de mayor indice para evitar repetir calculos
-          for(auto& particle_j : blocks[adjacent_index].GetParticles()){
-            Particle::IncrementAccelerations(particles_params, particles_[i], particle_j);
-          }
+        for(auto& particle_j : blocks[adjacent_index].GetParticles()){
+          Particle::IncrementAccelerations(particles_params, particles_[i], particle_j);
         }
       }
     }
