@@ -22,6 +22,10 @@ namespace sim {
 
       void TransformDenisty(const ParticlesData& particles_params);
 
+      static void IncrementDensities(const ParticlesData& particles_params, Particle& particle_i, Particle& particle_j);
+
+      static void IncrementAccelerations(const ParticlesData& particles_params, Particle& particle_i, Particle& particle_j);
+
       Particle & operator=(Particle const & other);
 
       size_t id;

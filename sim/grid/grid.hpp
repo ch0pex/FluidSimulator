@@ -13,9 +13,9 @@ namespace sim {
       Grid(int np, double ppm, std::vector<Particle> & particles);
 
       void Repositioning();
-
-      void CalcForces();
-
+      // Calcula las aceleraciones de las partículas.
+      void CalculateAccelerations();
+      // Procesa colisiones entre partículas.
       void ProcessCollisions();
 
       void MoveParticles();

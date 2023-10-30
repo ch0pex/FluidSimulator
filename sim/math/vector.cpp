@@ -83,6 +83,7 @@ namespace sim {
   double vec3<DataType>::SquaredDistance(const vec3<DataType> & v_i, const vec3<DataType> & v_j) {
     return pow(v_i.x - v_j.x, 2) + pow(v_i.y - v_j.y, 2) + pow(v_i.z - v_j.z, 2) ;
   }
+
   template struct vec3<double>;
   template struct vec3<size_t>;
 }  // namespace sim

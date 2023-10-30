@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "sim/utils/constants.hpp"
+#include "sim/math/math.hpp"
 
 namespace sim {
 
@@ -35,4 +36,38 @@ namespace sim {
     density = (density + particles_params.smoothing_pow_6) *
               (315.0 /(64.0 * PI * particles_params.smoothing_pow_9)) * particles_params.mass;
   }
+
+  /**
+   * Calcula un incremento en las densidades de dos partículas si su distancia
+   * al cuadrado es menor que el suavizado al cuadrado proporcionado en los parámetros de partículas.
+   * @param particles_params Parámetros de partículas que incluyen información sobre el suavizado.
+   * @param particle_i Primera partícula.
+   * @param particle_j Segunda partícula.
+   */
+  void Particle::IncrementDensities(const ParticlesData& particles_params, Particle& particle_i, Particle& particle_j) {
+    const double squared_distance = vec3d::SquaredDistance(particle_i.position, particle_j.position);
+    if (squared_distance < particles_params.smoothing_pow_2){
+      // Incremento de densidades basado en la distancia
+      const double density_increment = math::DensityIncrement(particles_params, squared_distance);
+      particle_i.density += density_increment;
+      particle_j.density += density_increment;
+    }
+  }
+
+  /**
+   * Esta función calcula un incremento en las aceleraciones de dos partículas si su distancia
+   * al cuadrado es menor que el suavizado al cuadrado proporcionado en los parámetros de partículas.
+   * @param particles_params Parámetros de partículas que incluyen información sobre el suavizado.
+   * @param particle_i Primera partícula.
+   * @param particle_j Segunda partícula.
+   */
+  void Particle::IncrementAccelerations(const ParticlesData & particles_params, Particle & particle_i, Particle & particle_j) {
+    const double squared_distance = vec3d::SquaredDistance(particle_i.position, particle_j.position);
+    if (squared_distance < particles_params.smoothing_pow_2){
+      const vec3d accleration_increment = math::AccelerationIncrement(particles_params, particle_i, particle_j, squared_distance);
+      particle_i.acceleration += accleration_increment;
+      particle_j.acceleration += accleration_increment;
+    }
+  }
+
 }  // namespace sim

@@ -44,11 +44,7 @@ namespace sim {
         os << v.x << " x " << v.y << " x " << v.z;
         return os;
       }
-
-
   };
-
-
 
   using vec3d = vec3<double>;
 }  // namespace sim

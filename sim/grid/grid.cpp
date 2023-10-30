@@ -41,11 +41,14 @@ namespace sim {
     blocks_ = std::move(aux);
   }
 
-  void Grid::CalcForces() {
+  /**
+   * Calcula las aceleraciones de las partículas.
+   */
+  void Grid::CalculateAccelerations() {
     // Las densisdes y aceleraciones no son copiadas en el grid auxiliar por lo que ya son 0
-    for (size_t i = 0; i < num_blocks_; ++i) {
+    for (size_t block_index = 0; block_index < num_blocks_; ++block_index) {
       // Se calculan la densidad y aceleracion entre las particulas de un mismo bloque
-      blocks_[i].CalcDensities(particles_param_, adjacent_blocks_[i], blocks_);
+      blocks_[block_index].CalcDensitiesAndAccelerations(particles_param_, adjacent_blocks_[block_index], blocks_, block_index);
     }
   }
 
