@@ -20,11 +20,10 @@ namespace sim::math {
  * @return Un vector 3D que representa el incremento de aceleración entre las partículas.
    */
   vec3d AccelerationIncrement(ParticlesData const & params, Particle const & particle_i, Particle const & particle_j, double squared_distance) {
-    double const distance = std::max(std::pow(squared_distance, SQUARED), MINIMUM_DISTANCE);
-
+    double const distance = std::max(std::sqrt(squared_distance), MINIMUN_DISTANCE);
     vec3d const left = (particle_i.position - particle_j.position) *
                        (15 / (PI * params.smoothing_pow_6)) * ((3 * params.mass * PRESSURE) / 2) *
-                       (std::sqrt(params.smoothing - distance) / distance) *
+                       (std::pow(params.smoothing - distance, 2) / distance) *
                        (particle_i.density + particle_j.density - 2 * DENSITY);
 
     vec3d const right = (particle_i.velocity - particle_j.velocity) *

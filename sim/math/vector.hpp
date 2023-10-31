@@ -18,6 +18,7 @@ namespace sim {
       vec3();
 
       constexpr vec3(double _x, double _y, double _z) : x(_x), y(_y), z(_z) { }
+      constexpr vec3(int _x, int _y, int _z) : x(_x), y(_y), z(_z) { }
 
       vec3<DataType> operator+(vec3<DataType> const & vector) const;
 

@@ -6,6 +6,9 @@
 #include "sim/math/vector.hpp"
 
 #include <vector>
+#include "sim/utils/constants.hpp"
+#include <map>
+#include <set>
 
 namespace sim {
   class Grid {
@@ -37,6 +40,10 @@ namespace sim {
 
       void CalculateAdjacentBlocks(size_t index);
 
+      [[nodiscard]] bool BlockInBounds(const vec3<int>& block_pos) const;
+
+      void AddBlockToLimits(size_t index, const vec3<int>& neighbor_pos);
+
       int num_particles;
       ParticlesData particles_param_;
 
@@ -46,6 +53,9 @@ namespace sim {
 
       std::vector<Block> blocks_;
       std::vector<std::vector<size_t>> adjacent_blocks_;
+
+      std::map<size_t, std::set<Limits>> grid_limits_;
+
   };
 }  // namespace sim
 

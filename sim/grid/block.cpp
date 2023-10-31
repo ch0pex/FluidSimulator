@@ -1,6 +1,5 @@
 #include "block.hpp"
 
-#include "sim/utils/constants.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -51,6 +50,131 @@ namespace sim {
         for(auto& particle_j : blocks[adjacent_index].GetParticles()){
           Particle::IncrementAccelerations(particles_params, particles_[i], particle_j);
         }
+      }
+    }
+  }
+
+  void Block::ProcessCollisions(std::set<Limits>& limits) {
+    for(auto& particle : particles_){
+      CollisionsX(particle, limits);
+      CollisionsY(particle, limits);
+      CollisionsZ(particle, limits);
+    }
+  }
+
+  void Block::MoveParticles() {
+    for (auto& particle : particles_){
+      particle.position += particle.hv * TIME_STEP + particle.acceleration * SQUARED_TIME_STEP;
+      particle.velocity = particle.hv + (particle.acceleration * TIME_STEP) / 2;
+      particle.hv += particle.acceleration * TIME_STEP;
+    }
+  }
+
+  void Block::CollisionsX(Particle& particle, std::set<Limits>& limits) {
+    double x = 0.0;
+    double x_diff = 0.0;
+    if (limits.contains(CX0)) {
+      x = particle.position.x + particle.hv.x * TIME_STEP;
+      x_diff = PARTICLE_SIZE - (x - BOTTOM_LIMIT.x);
+      particle.acceleration.x += COLLISION * x_diff - DAMPING * particle.velocity.x;
+    } else if (limits.contains(CXN)) {
+      x = particle.position.x + particle.hv.x * TIME_STEP;
+      x_diff = PARTICLE_SIZE - (TOP_LIMIT.x - x);
+      particle.acceleration.x -= COLLISION * x_diff + DAMPING * particle.velocity.x;
+    }
+  }
+
+  void Block::CollisionsY(Particle& particle, std::set<Limits> & limits) {
+    double y = 0.0;
+    double y_diff = 0.0;
+
+    if (limits.contains(CY0)) {
+      y = particle.position.y + particle.hv.y * TIME_STEP;
+      y_diff = PARTICLE_SIZE - (y - BOTTOM_LIMIT.y);
+      particle.acceleration.y += COLLISION * y_diff - DAMPING * particle.velocity.y;
+    } else if (limits.contains(CYN)) {
+      y = particle.position.y + particle.hv.y * TIME_STEP;
+      y_diff = PARTICLE_SIZE - (TOP_LIMIT.y - y);
+      particle.acceleration.y -= COLLISION * y_diff + DAMPING * particle.velocity.y;
+    }
+  }
+
+  void Block::CollisionsZ(Particle& particle, std::set<Limits> & limits) {
+    double z = 0.0;
+    double z_diff = 0.0;
+    if (limits.contains(CZ0)) {
+      z = particle.position.z + particle.hv.z * TIME_STEP;
+      z_diff = PARTICLE_SIZE - (z - BOTTOM_LIMIT.z);
+      particle.acceleration.z += COLLISION * z_diff - DAMPING * particle.velocity.z;
+    } else if (limits.contains(CZN)) {
+      z = particle.position.z + particle.hv.z * TIME_STEP;
+      z_diff = PARTICLE_SIZE - (TOP_LIMIT.z - z);
+      particle.acceleration.z -= COLLISION * z_diff + DAMPING * particle.velocity.z;
+    }
+  }
+
+
+  void Block::ProcessLimits(std::set<Limits> & limits) {
+    for(auto& particle : particles_){
+      LimitsX(particle, limits);
+      LimitsY(particle, limits);
+      LimitsZ(particle, limits);
+    }
+  }
+
+  void Block::LimitsX(Particle & particle, std::set<Limits> & limits) {
+    double dx = 0.0;
+    if (limits.contains(CX0)) {
+      dx = particle.position.x - BOTTOM_LIMIT.x;
+      if (dx < 0) {
+        particle.position.x = BOTTOM_LIMIT.x - dx;
+        particle.velocity.x = -particle.velocity.x;
+        particle.hv.x = -particle.hv.x;
+      }
+    } else if (limits.contains(CXN)) {
+      dx = TOP_LIMIT.x - particle.position.x;
+      if (dx < 0) {
+        particle.position.x = TOP_LIMIT.x + dx;
+        particle.velocity.x = -particle.velocity.x;
+        particle.hv.x = -particle.hv.x;
+      }
+    }
+  }
+
+  void Block::LimitsY(Particle & particle, std::set<Limits> & limits) {
+    double dy = 0.0;
+    if (limits.contains(CY0)) {
+      dy = particle.position.y - BOTTOM_LIMIT.y;
+      if (dy < 0) {
+        particle.position.y = BOTTOM_LIMIT.y - dy;
+        particle.velocity.y = -particle.velocity.y;
+        particle.hv.y = -particle.hv.y;
+      }
+    } else if (limits.contains(CYN)) {
+      dy = TOP_LIMIT.y - particle.position.y;
+      if (dy < 0) {
+        particle.position.y = TOP_LIMIT.y + dy;
+        particle.velocity.y = -particle.velocity.y;
+        particle.hv.y = -particle.hv.y;
+      }
+    }
+  }
+
+  void Block::LimitsZ(Particle & particle, std::set<Limits> & limits) {
+    double dz = 0.0;
+    if (limits.contains(CZ0)) {
+      dz = particle.position.z - BOTTOM_LIMIT.z;
+      if (dz < 0) {
+        particle.position.z = BOTTOM_LIMIT.z - dz;
+        particle.velocity.z = -particle.velocity.z;
+        particle.hv.z = -particle.hv.z;
+      }
+    } else if (limits.contains(CZN)) {
+      dz = TOP_LIMIT.z - particle.position.z;
+      if (dz < 0) {
+        particle.position.z = TOP_LIMIT.z + dz;
+        particle.velocity.z = -particle.velocity.z;
+        particle.hv.z = -particle.hv.z;
       }
     }
   }

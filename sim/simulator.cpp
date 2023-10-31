@@ -60,9 +60,9 @@ namespace sim {
     for (int i = 0; i < nts_; i++) {
       grid_->Repositioning();
       grid_->CalculateAccelerations();
-      // grid_->ProcessCollisions();
-      // grid_->MoveParticles();
-      // grid_->ProcessLimits();
+      grid_->ProcessCollisions();
+      grid_->MoveParticles();
+      grid_->ProcessLimits();
     }
     return (SUCCESS);
   }

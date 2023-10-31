@@ -86,4 +86,5 @@ namespace sim {
 
   template struct vec3<double>;
   template struct vec3<size_t>;
+  template struct vec3<int>;
 }  // namespace sim

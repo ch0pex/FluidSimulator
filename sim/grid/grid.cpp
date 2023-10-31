@@ -1,7 +1,5 @@
 #include "grid.hpp"
 
-#include "sim/utils/constants.hpp"
-
 #include <cmath>
 #include <iostream>
 
@@ -52,20 +50,22 @@ namespace sim {
     }
   }
 
-  void Grid::ProcessCollisions() { }
+  void Grid::ProcessCollisions() {
+    for(auto& [index, limits] : grid_limits_){
+      blocks_[index].ProcessCollisions(limits);
+    }
+  }
 
-  void Grid::MoveParticles() { }
+  void Grid::MoveParticles() {
+    for(auto& block : blocks_) {
+      block.MoveParticles();
+    }
+  }
 
-  void Grid::ProcessLimits() { }
-
-  void Grid::InitMessage() const {
-    std::cout << "Number of particles: " << num_particles << "\n";
-    std::cout << "Particles per meter: " << particles_param_.particles_per_meter << "\n";
-    std::cout << "Smoothing length: " <<  particles_param_.smoothing << "\n";
-    std::cout << "Particles Mass: " << particles_param_.mass << "\n";
-    std::cout << "Grid size: " << grid_size_ << "\n";
-    std::cout << "Number of blocks: " << num_blocks_ << "\n";
-    std::cout << "Block size: " << block_size_ << "\n";
+  void Grid::ProcessLimits() {
+    for(auto& [index, limits] : grid_limits_){
+      blocks_[index].ProcessLimits(limits);
+    }
   }
 
   /**
@@ -100,6 +100,16 @@ namespace sim {
             static_cast<size_t>(pos_k) * grid_size_.x * grid_size_.y);
   }
 
+  void Grid::InitMessage() const {
+    std::cout << "Number of particles: " << num_particles << "\n";
+    std::cout << "Particles per meter: " << particles_param_.particles_per_meter << "\n";
+    std::cout << "Smoothing length: " <<  particles_param_.smoothing << "\n";
+    std::cout << "Particles Mass: " << particles_param_.mass << "\n";
+    std::cout << "Grid size: " << grid_size_ << "\n";
+    std::cout << "Number of blocks: " << num_blocks_ << "\n";
+    std::cout << "Block size: " << block_size_ << "\n";
+  }
+
   void Grid::CalculateAdjacentBlocks(size_t index) {
     vec3<int> const block_pos = {index % grid_size_.x, (index / grid_size_.x) % grid_size_.y,
                                  index / (grid_size_.x * grid_size_.y)};
@@ -107,23 +117,51 @@ namespace sim {
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
         for (int k = -1; k <= 1; ++k) {
-          if (i == 0 && j == 0 && k == 0) { continue; }
+          if (i == 0 && j == 0 && k == 0) {
+            continue;
+          }
           vec3<int> const neighbor_pos = {block_pos.x + i, block_pos.y + j, block_pos.z + k};
 
-          if (neighbor_pos.x >= 0 && static_cast<size_t>(neighbor_pos.x) < grid_size_.x &&
-              neighbor_pos.y >= 0 && static_cast<size_t>(neighbor_pos.y) < grid_size_.y &&
-              neighbor_pos.z >= 0 && static_cast<size_t>(neighbor_pos.z) < grid_size_.z) {
-            size_t const neighbor_index = neighbor_pos.x + neighbor_pos.y * grid_size_.x +
-                                          neighbor_pos.z * grid_size_.x * grid_size_.y;
-            if (index < neighbor_index) {
+          if (BlockInBounds(neighbor_pos)) {
+            size_t const neighbor_index = neighbor_pos.x + neighbor_pos.y * grid_size_.x
+                                          + neighbor_pos.z * grid_size_.x * grid_size_.y;
+            if (neighbor_index > index) {
               // Solo se anaden a la lista de vecinos los bloques con mas indice para asi no repetir calculos
-              adjacent_blocks_[index].push_back( neighbor_index);
+              adjacent_blocks_[index].push_back(neighbor_index);
             }
+          } else {
+            AddBlockToLimits(index, neighbor_pos);
           }
         }
       }
     }
   }
+
+  bool Grid::BlockInBounds(const vec3<int>& block_pos) const {
+    return block_pos.x >= 0 && static_cast<size_t>(block_pos.x) < grid_size_.x
+           && block_pos.y >= 0 && static_cast<size_t>(block_pos.y) < grid_size_.y &&
+           block_pos.z >= 0 && static_cast<size_t>(block_pos.z) < grid_size_.z;
+  }
+
+ void Grid::AddBlockToLimits(size_t index, const vec3<int> & neighbor_pos) {
+   if(neighbor_pos.x < 0 ) {
+     grid_limits_[index].insert(CX0);
+   } else if (static_cast<size_t>(neighbor_pos.x) >= grid_size_.x) {
+     grid_limits_[index].insert(CXN);
+   }
+
+   if(neighbor_pos.y < 0 ) {
+     grid_limits_[index].insert(CY0);
+   } else if (static_cast<size_t>(neighbor_pos.y) >= grid_size_.y) {
+     grid_limits_[index].insert(CYN);
+   }
+
+   if(neighbor_pos.z < 0 ) {
+     grid_limits_[index].insert(CZ0);
+   } else if (static_cast<size_t>(neighbor_pos.z) >= grid_size_.z) {
+     grid_limits_[index].insert(CZN);
+   }
+ }
 
   int Grid::GetNumParticles() const {
     return num_particles;
