@@ -36,9 +36,9 @@ if [ "$SPECIFIED_OUTPUT" = false ]; then
 fi
 
 if $DEBUG; then
-  COMMAND="/usr/bin/perf stat ./scripts/local/run.sh $REPEATS cmake-build-debug/fluid/fluid 10 res/large.fld res/final.fld"
+  COMMAND="/usr/bin/perf stat  $REPEATS cmake-build-debug/fluid/fluid 10 res/large.fld res/final.fld"
 else
-  COMMAND="/usr/bin/perf stat ./scripts/local/run.sh $REPEATS cmake-build-release/fluid/fluid 10 res/large.fld res/final.fld"
+  COMMAND="/usr/bin/perf stat -r $REPEATS cmake-build-release/fluid/fluid 10 res/large.fld res/final.fld"
 fi
 
 if $SAVE_TO_FILE; then

@@ -26,8 +26,6 @@ namespace sim {
 
       static void IncrementAccelerations(const ParticlesData& particles_params, Particle& particle_i, Particle& particle_j);
 
-      Particle & operator=(Particle const & other);
-
       size_t id;
 
       vec3d position;

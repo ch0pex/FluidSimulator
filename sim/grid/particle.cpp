@@ -15,22 +15,21 @@ namespace sim {
         mass(DENSITY / pow(ppm, 3)) { }
 
   Particle::Particle(size_t _id, vec3d& _position, vec3d& _hv, vec3d& _velocity)
-    : id(_id), position(_position), hv(_hv), velocity(_velocity),
-      acceleration(GRAVITY), density(0) { }
+    : id(_id),
+      position(_position),
+      hv(_hv),
+      velocity(_velocity),
+      acceleration(GRAVITY),
+      density(0) { }
 
   Particle::Particle(sim::Particle const & other)
-    : id(other.id), position(other.position), hv(other.hv), velocity(other.velocity),
-      acceleration(GRAVITY), density(0) { }
+    : id(other.id),
+      position(other.position),
+      hv(other.hv),
+      velocity(other.velocity),
+      acceleration(GRAVITY),
+      density(0) { }
 
-  Particle & Particle::operator=(Particle const & other) {
-    if (this != &other) {
-      id       = other.id;
-      position = other.position;
-      hv       = other.hv;
-      velocity = other.velocity;
-    }
-    return *this;
-  }
 
   void Particle::TransformDenisty(const ParticlesData& particles_params) {
     density = (density + particles_params.smoothing_pow_6) *
@@ -66,7 +65,7 @@ namespace sim {
     if (squared_distance < particles_params.smoothing_pow_2){
       const vec3d accleration_increment = math::AccelerationIncrement(particles_params, particle_i, particle_j, squared_distance);
       particle_i.acceleration += accleration_increment;
-      particle_j.acceleration += accleration_increment;
+      particle_j.acceleration -= accleration_increment;
     }
   }
 

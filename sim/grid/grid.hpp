@@ -38,7 +38,7 @@ namespace sim {
 
       size_t GetBlockIndex(vec3d & particle_pos) const;
 
-      void CalculateAdjacentBlocks(size_t index);
+      void CalculateAdjacentAndLimitBlocks(size_t index);
 
       [[nodiscard]] bool BlockInBounds(const vec3<int>& block_pos) const;
 

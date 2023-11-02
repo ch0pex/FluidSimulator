@@ -29,7 +29,7 @@ namespace sim {
    * Permite acceder y manipular directamente las partículas contenidas en el bloque.
    * @return Una referencia al vector de partículas del bloque.
    */
-  void Block::CalcDensitiesAndAccelerations(const ParticlesData& particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks, size_t block_index) {
+  void Block::CalcDensities(ParticlesData const & particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks, size_t block_index) {
     for (size_t i = 0; i < particles_.size(); ++i) {
       for (size_t j = i + 1; j < particles_.size(); ++j) { // Evitamos repetir calculos entre particulas inicializando j=i+1
         Particle::IncrementDensities(particles_params, particles_[i], particles_[j]);
@@ -42,12 +42,16 @@ namespace sim {
         }
       }
       particles_[i].TransformDenisty(particles_params);
+    }
+  }
 
+  void Block::CalcAccelerations(const ParticlesData& particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks) {
+    for (size_t i = 0; i < particles_.size(); ++i) {
       for (size_t j = i + 1; j < particles_.size(); ++j) {  // Evitamos repetir calculos entre particulas inicializando j=i+1
         Particle::IncrementAccelerations(particles_params, particles_[i], particles_[j]);
       }
-      for(auto& adjacent_index : adjacents) {
-        for(auto& particle_j : blocks[adjacent_index].GetParticles()){
+      for (auto & adjacent_index : adjacents) {
+        for (auto & particle_j : blocks[adjacent_index].GetParticles()) {
           Particle::IncrementAccelerations(particles_params, particles_[i], particle_j);
         }
       }
@@ -65,7 +69,7 @@ namespace sim {
   void Block::MoveParticles() {
     for (auto& particle : particles_){
       particle.position += particle.hv * TIME_STEP + particle.acceleration * SQUARED_TIME_STEP;
-      particle.velocity = particle.hv + (particle.acceleration * TIME_STEP) / 2;
+      particle.velocity = particle.hv + ((particle.acceleration * TIME_STEP) / 2);
       particle.hv += particle.acceleration * TIME_STEP;
     }
   }
@@ -76,11 +80,15 @@ namespace sim {
     if (limits.contains(CX0)) {
       x = particle.position.x + particle.hv.x * TIME_STEP;
       x_diff = PARTICLE_SIZE - (x - BOTTOM_LIMIT.x);
-      particle.acceleration.x += COLLISION * x_diff - DAMPING * particle.velocity.x;
+      if (x_diff > MIN_COLLISION_DIFF){
+        particle.acceleration.x += COLLISION * x_diff - DAMPING * particle.velocity.x;
+      }
     } else if (limits.contains(CXN)) {
       x = particle.position.x + particle.hv.x * TIME_STEP;
       x_diff = PARTICLE_SIZE - (TOP_LIMIT.x - x);
-      particle.acceleration.x -= COLLISION * x_diff + DAMPING * particle.velocity.x;
+      if (x_diff > MIN_COLLISION_DIFF) {
+        particle.acceleration.x -= COLLISION * x_diff + DAMPING * particle.velocity.x;
+      }
     }
   }
 
@@ -91,11 +99,15 @@ namespace sim {
     if (limits.contains(CY0)) {
       y = particle.position.y + particle.hv.y * TIME_STEP;
       y_diff = PARTICLE_SIZE - (y - BOTTOM_LIMIT.y);
-      particle.acceleration.y += COLLISION * y_diff - DAMPING * particle.velocity.y;
+      if (y_diff > MIN_COLLISION_DIFF) {
+        particle.acceleration.y += COLLISION * y_diff - DAMPING * particle.velocity.y;
+      }
     } else if (limits.contains(CYN)) {
       y = particle.position.y + particle.hv.y * TIME_STEP;
       y_diff = PARTICLE_SIZE - (TOP_LIMIT.y - y);
-      particle.acceleration.y -= COLLISION * y_diff + DAMPING * particle.velocity.y;
+      if (y_diff > MIN_COLLISION_DIFF) {
+        particle.acceleration.y -= COLLISION * y_diff + DAMPING * particle.velocity.y;
+      }
     }
   }
 
@@ -105,14 +117,17 @@ namespace sim {
     if (limits.contains(CZ0)) {
       z = particle.position.z + particle.hv.z * TIME_STEP;
       z_diff = PARTICLE_SIZE - (z - BOTTOM_LIMIT.z);
-      particle.acceleration.z += COLLISION * z_diff - DAMPING * particle.velocity.z;
+      if (z_diff > MIN_COLLISION_DIFF) {
+          particle.acceleration.z += COLLISION * z_diff - DAMPING * particle.velocity.z;
+      }
     } else if (limits.contains(CZN)) {
       z = particle.position.z + particle.hv.z * TIME_STEP;
       z_diff = PARTICLE_SIZE - (TOP_LIMIT.z - z);
-      particle.acceleration.z -= COLLISION * z_diff + DAMPING * particle.velocity.z;
+      if (z_diff > MIN_COLLISION_DIFF) {
+            particle.acceleration.z -= COLLISION * z_diff + DAMPING * particle.velocity.z;
+      }
     }
   }
-
 
   void Block::ProcessLimits(std::set<Limits> & limits) {
     for(auto& particle : particles_){
@@ -178,5 +193,6 @@ namespace sim {
       }
     }
   }
+
 
 }  // namespace sim

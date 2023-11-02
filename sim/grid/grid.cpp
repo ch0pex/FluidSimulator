@@ -22,8 +22,8 @@ namespace sim {
     }
 
     for (size_t i = 0; i < num_blocks_; ++i) {
-      // Se calculan los bloques adjacentes para cada bloque
-      CalculateAdjacentBlocks(i);
+      // Se calculan los bloques adjacentes para cada bloque y tambien determina que bloques son limites Cx, Cy, Cz
+      CalculateAdjacentAndLimitBlocks(i);
     }
     // InitMessage(); Comentado para que no moleste en los perf stat
   }
@@ -44,9 +44,17 @@ namespace sim {
    */
   void Grid::CalculateAccelerations() {
     // Las densisdes y aceleraciones no son copiadas en el grid auxiliar por lo que ya son 0
+    // a = 0
+    // d = 0
+
     for (size_t block_index = 0; block_index < num_blocks_; ++block_index) {
-      // Se calculan la densidad y aceleracion entre las particulas de un mismo bloque
-      blocks_[block_index].CalcDensitiesAndAccelerations(particles_param_, adjacent_blocks_[block_index], blocks_, block_index);
+      // Se calculan la densidad y aceleracion entre las particulas de un mismo bloque y bloques adjacentes
+      blocks_[block_index].CalcDensities(particles_param_, adjacent_blocks_[block_index], blocks_, block_index);
+    }
+
+    for (size_t block_index = 0; block_index < num_blocks_; ++block_index) {
+      // Se calcula la aceleracion entre las particulas de un mismo bloque y bloques adjacentes
+      blocks_[block_index].CalcAccelerations(particles_param_, adjacent_blocks_[block_index], blocks_);
     }
   }
 
@@ -110,7 +118,7 @@ namespace sim {
     std::cout << "Block size: " << block_size_ << "\n";
   }
 
-  void Grid::CalculateAdjacentBlocks(size_t index) {
+  void Grid::CalculateAdjacentAndLimitBlocks(size_t index) {
     vec3<int> const block_pos = {index % grid_size_.x, (index / grid_size_.x) % grid_size_.y,
                                  index / (grid_size_.x * grid_size_.y)};
 
