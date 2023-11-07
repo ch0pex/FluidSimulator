@@ -1,0 +1,25 @@
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1000 res/large.fld res/large-temp.fld':
+
+         31.070,57 msec task-clock                #    0,998 CPUs utilized          
+               126      context-switches          #    0,004 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.617      page-faults               #    0,084 K/sec                  
+   105.371.481.606      cycles                    #    3,391 GHz                    
+   298.272.450.181      instructions              #    2,83  insn per cycle         
+    41.223.867.241      branches                  # 1326,782 M/sec                  
+       174.085.321      branch-misses             #    0,42% of all branches        
+
+      31,143981671 seconds time elapsed
+
+      31,059487000 seconds user
+       0,011998000 seconds sys
+
+

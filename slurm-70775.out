@@ -1,0 +1,61 @@
+------------------------ /usr/share/modules/modulefiles ------------------------
+dot  gcc/12.1.0  module-git  module-info  modules  null  use.own  
+cmake version 3.27.7
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+-- The CXX compiler identification is GNU 12.1.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /opt/gcc-12.1.0/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- The C compiler identification is GNU 12.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /opt/gcc-12.1.0/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found Python3: /usr/bin/python3.9 (found version "3.9.2") found components: Interpreter 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Configuring done (15.0s)
+-- Generating done (1.1s)
+-- Build files have been written to: /home/alumnos/a0432481/ArquiCompP1/build
+[  4%] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[  8%] Linking CXX static library ../../../lib/libgtest.a
+[  8%] Built target gtest
+[ 12%] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 16%] Linking CXX static library ../../../lib/libgmock.a
+[ 16%] Built target gmock
+[ 20%] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[ 24%] Linking CXX static library ../../../lib/libgmock_main.a
+[ 24%] Built target gmock_main
+[ 28%] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[ 32%] Linking CXX static library ../../../lib/libgtest_main.a
+[ 32%] Built target gtest_main
+[ 36%] Building CXX object sim/CMakeFiles/sim.dir/grid/block.cpp.o
+[ 40%] Building CXX object sim/CMakeFiles/sim.dir/grid/grid.cpp.o
+[ 44%] Building CXX object sim/CMakeFiles/sim.dir/args/proargs.cpp.o
+[ 48%] Building CXX object sim/CMakeFiles/sim.dir/file/fld.cpp.o
+[ 52%] Building CXX object sim/CMakeFiles/sim.dir/math/vector.cpp.o
+[ 56%] Building CXX object sim/CMakeFiles/sim.dir/grid/particle.cpp.o
+[ 60%] Building CXX object sim/CMakeFiles/sim.dir/math/math.cpp.o
+[ 64%] Linking CXX static library libsim.a
+[ 64%] Built target sim
+[ 68%] Building CXX object fluid/CMakeFiles/fluid.dir/__/sim/simulator.cpp.o
+[ 72%] Building CXX object fluid/CMakeFiles/fluid.dir/fluid.cpp.o
+[ 76%] Linking CXX executable fluid
+[ 76%] Built target fluid
+[ 80%] Building CXX object utest/CMakeFiles/utest.dir/proargs_test.cpp.o
+[ 84%] Building CXX object utest/CMakeFiles/utest.dir/grid_test.cpp.o
+[ 88%] Building CXX object utest/CMakeFiles/utest.dir/block_test.cpp.o
+[ 92%] Linking CXX executable utest
+[ 92%] Built target utest
+[ 96%] Building CXX object ftest/CMakeFiles/ftest.dir/ftests.cpp.o
+[100%] Linking CXX executable ftest
+[100%] Built target ftest

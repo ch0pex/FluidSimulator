@@ -1,0 +1,49 @@
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1000 res/large.fld res/large-temp.fld' (5 runs):
+
+         31.307,93 msec task-clock                #    0,998 CPUs utilized            ( +-  0,23% )
+               155      context-switches          #    0,005 K/sec                    ( +- 14,02% )
+                 1      cpu-migrations            #    0,000 K/sec                    ( +- 66,67% )
+             2.801      page-faults               #    0,089 K/sec                    ( +-  2,53% )
+   106.159.123.625      cycles                    #    3,391 GHz                      ( +-  0,23% )
+   298.273.910.118      instructions              #    2,81  insn per cycle           ( +-  0,00% )
+    41.224.163.063      branches                  # 1316,732 M/sec                    ( +-  0,00% )
+       174.092.774      branch-misses             #    0,42% of all branches          ( +-  0,26% )
+
+           31,3724 +- 0,0714 seconds time elapsed  ( +-  0,23% )
+

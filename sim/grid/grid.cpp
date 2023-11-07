@@ -25,7 +25,7 @@ namespace sim {
       // Se calculan los bloques adjacentes para cada bloque y tambien determina que bloques son limites Cx, Cy, Cz
       CalculateAdjacentAndLimitBlocks(i);
     }
-    // InitMessage(); Comentado para que no moleste en los perf stat
+    InitMessage(); 
   }
 
   void Grid::Repositioning() {

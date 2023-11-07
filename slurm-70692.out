@@ -1,0 +1,18 @@
+
+ Performance counter stats for 'build/fluid/fluid 100 res/large.fld res/large-10.fld':
+
+          3.091,75 msec task-clock                #    0,979 CPUs utilized          
+                25      context-switches          #    0,008 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.830      page-faults               #    0,915 K/sec                  
+    10.484.443.330      cycles                    #    3,391 GHz                    
+    29.125.614.456      instructions              #    2,78  insn per cycle         
+     4.037.763.834      branches                  # 1305,980 M/sec                  
+        18.715.955      branch-misses             #    0,46% of all branches        
+
+       3,156597543 seconds time elapsed
+
+       3,092383000 seconds user
+       0,000000000 seconds sys
+
+

@@ -1,0 +1,25 @@
+Number of particles: 4800
+Particles per meter: 204
+Smoothing length: 0.00830882
+Particles Mass: 0.00011779
+Grid size: 15 x 21 x 15
+Number of blocks: 4725
+Block size: 0.00866667 x 0.00857143 x 0.00866667
+
+ Performance counter stats for 'build/fluid/fluid 5 res/small.fld res/small-5.fld':
+
+             38,10 msec task-clock                #    0,416 CPUs utilized          
+                15      context-switches          #    0,394 K/sec                  
+                 1      cpu-migrations            #    0,026 K/sec                  
+               963      page-faults               #    0,025 M/sec                  
+       104.757.113      cycles                    #    2,749 GHz                    
+       198.937.260      instructions              #    1,90  insn per cycle         
+        31.494.742      branches                  #  826,535 M/sec                  
+           841.142      branch-misses             #    2,67% of all branches        
+
+       0,091539437 seconds time elapsed
+
+       0,039290000 seconds user
+       0,000000000 seconds sys
+
+
