@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS_OFF)
 
 add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
-#set(CMAKE_CXX_FLAGS_RELEASE "−march=native")
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -23,6 +23,10 @@ FetchContent_Declare(GSL
         GIT_SHALLOW ON
 )
 FetchContent_MakeAvailable(GSL)
+
+#set(CMAKE_CXX_CLANG_TIDY -clang-tidy -header-filter=.*)
+
+include_directories(PUBLIC .)
 
 add_subdirectory(sim)
 add_subdirectory(fluid)
