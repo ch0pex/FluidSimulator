@@ -49,7 +49,7 @@ namespace sim {
 
     for (size_t block_index = 0; block_index < num_blocks_; ++block_index) {
       // Se calculan la densidad y aceleracion entre las particulas de un mismo bloque y bloques adjacentes
-      blocks_[block_index].CalcDensities(particles_param_, adjacent_blocks_[block_index], blocks_, block_index);
+      blocks_[block_index].CalcDensities(particles_param_, adjacent_blocks_[block_index], blocks_);
     }
 
     for (size_t block_index = 0; block_index < num_blocks_; ++block_index) {

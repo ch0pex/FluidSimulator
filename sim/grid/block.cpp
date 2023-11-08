@@ -29,17 +29,15 @@ namespace sim {
   * @param blocks Un vector de bloques conteniendo partículas.
   * @param block_index El índice del bloque actual en el vector de bloques.
   */
-  void Block::CalcDensities(ParticlesData const & particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks, size_t block_index) {
+  void Block::CalcDensities(ParticlesData const & particles_params, std::vector<size_t>& adjacents, std::vector<Block>& blocks) {
     for (size_t i = 0; i < particles_.size(); ++i) {
       for (size_t j = i + 1; j < particles_.size(); ++j) { // Evitamos repetir calculos entre particulas inicializando j=i+1
         Particle::IncrementDensities(particles_params, particles_[i], particles_[j]);
       }
       for(auto& adjacent_index : adjacents) {
-        if(adjacent_index > block_index) { //Solo se hacen los calculos con los bloques adjacentes de mayor indice para evitar repetir calculos
           for(auto& particle_j : blocks[adjacent_index].GetParticles()){
             Particle::IncrementDensities(particles_params, particles_[i], particle_j);
           }
-        }
       }
       particles_[i].TransformDenisty(particles_params);
     }

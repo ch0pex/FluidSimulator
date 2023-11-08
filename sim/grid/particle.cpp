@@ -68,5 +68,4 @@ namespace sim {
       particle_j.acceleration -= accleration_increment;
     }
   }
-
 }  // namespace sim
