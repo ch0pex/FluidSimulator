@@ -60,8 +60,8 @@ namespace sim {
   /**
    *
    * @tparam DataType
-   * @param scalar
-   * @return
+   * @param scalar El valor escalar por el que se multiplicará el vector.
+   * @return nuevo vector vec3 cuyos componentes son el resultado de la multiplicación.
    */
   template <typename DataType>
   vec3<DataType> vec3<DataType>::operator*(DataType scalar) const {
@@ -71,14 +71,20 @@ namespace sim {
   /**
    *
    * @tparam DataType
-   * @param scalar
-   * @return
+   * @param scalar El valor escalar por el que se dividirá el vector.
+   * @return nuevo vector vec3 cuyos componentes son el resultado de la división.
    */
   template <typename DataType>
   vec3<DataType> vec3<DataType>::operator/(DataType scalar) const {
     return {x / scalar, y / scalar, z / scalar};
   }
 
+  /**
+   * @tparam DataType
+   * @param v_i Primer vector vec3.
+   * @param v_j Segundo vector vec3.
+   * @return El valor de la distancia al cuadrado entre v_i y v_j.
+   */
   template <typename DataType>
   double vec3<DataType>::SquaredDistance(const vec3<DataType> & v_i, const vec3<DataType> & v_j) {
     return pow(v_i.x - v_j.x, 2) + pow(v_i.y - v_j.y, 2) + pow(v_i.z - v_j.z, 2);

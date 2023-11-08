@@ -33,7 +33,7 @@ namespace sim {
    * Abre el fichero .fld como archivo binario con permisos de lectura, cambia el valor length
    * @param path: archivo .fld que se desea abrir
    */
-  void ifld::Open(std::string const & path) {  // TODO: Comprobar que el fichero es .fld?
+  void ifld::Open(std::string const & path) {
     if (!input_file_.is_open()) {
       input_file_.open(path, std::ios::binary);
       input_file_.seekg(0, std::ifstream::end);
@@ -60,8 +60,12 @@ namespace sim {
     float tmp = 0.0F;
 
     input_file_.seekg(0, std::ifstream::beg);
+    // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     input_file_.read(reinterpret_cast<char *>(&tmp), sizeof(float));
     ppm = static_cast<double>(tmp);
+    // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     input_file_.read(reinterpret_cast<char *>(&np), sizeof(float));
     if (np <= 0) {
       std::cout << "Invalid number of particles\n";
@@ -93,6 +97,8 @@ namespace sim {
 
     particles.reserve((length_ - SIZE_HEADER) / PARTICLE_COMPONENTS);  // numero de componentes de una particula
     input_file_.seekg(SIZE_HEADER, std::ifstream::beg);
+    // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     input_file_.read(reinterpret_cast<char *>(tmp.data()), length_ - SIZE_HEADER);
     for (size_t i = 0; i < tmp.size(); i += PARTICLE_COMPONENTS) {
       position = {tmp[i], tmp[i + 1], tmp[i + 2]};
@@ -149,12 +155,20 @@ namespace sim {
   }
 
   /**
-   *
-   * @return
-   */
+  * Escribe una cabecera en un archivo de salida.
+  *
+  * @param np Número de partículas a escribir en la cabecera.
+  * @param ppm Cantidad de partículas por metro (partículas por metro).
+  * @return Un código de error que indica el resultado de la operación.
+  */
   sim::error_code ofld::WriteHeader(int np, double ppm) {
+    // Convierte ppm a un valor de punto flotante y escribe el número de partículas y ppm en el archivo de salida.
     auto particle_per_meter = static_cast<float>(ppm);
+    // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     output_file_.write(reinterpret_cast<char *>(&np), sizeof(int));
+    // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
     output_file_.write(reinterpret_cast<char *>(&particle_per_meter), sizeof(float));
     return (SUCCESS);
   }
@@ -164,8 +178,10 @@ namespace sim {
    * @return
    */
   sim::error_code ofld::WriteParticles(std::vector<Particle *> & particles) {
+    // Inicializa un array temporal para almacenar los datos de cada partícula.
     std::array<float, PARTICLE_COMPONENTS> tmp_values{};
     for (auto & particle : particles) {
+      // Copia los componentes de la partícula en el array temporal y luego escribe los datos en el archivo de salida.
       tmp_values[0] = static_cast<float>(particle->position.x);
       tmp_values[1] = static_cast<float>(particle->position.y);
       tmp_values[2] = static_cast<float>(particle->position.z);
@@ -175,6 +191,8 @@ namespace sim {
       tmp_values[6] = static_cast<float>(particle->velocity.x);
       tmp_values[7] = static_cast<float>(particle->velocity.y);
       tmp_values[8] = static_cast<float>(particle->velocity.z);
+      // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
+      // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
       output_file_.write(reinterpret_cast<char *>(tmp_values.data()),
                          sizeof(float) * PARTICLE_COMPONENTS);
     }
@@ -182,8 +200,9 @@ namespace sim {
   }
 
   /**
+   * Convierte el objeto de la clase ofld en un valor booleano.
    *
-   * @return
+   * @return true si el archivo de salida está abierto, false si está cerrado.
    */
   ofld::operator bool() const {
     return output_file_.is_open();
