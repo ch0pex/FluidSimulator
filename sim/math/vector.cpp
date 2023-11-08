@@ -79,17 +79,6 @@ namespace sim {
     return {x / scalar, y / scalar, z / scalar};
   }
 
-  /**
-   * @tparam DataType
-   * @param v_i Primer vector vec3.
-   * @param v_j Segundo vector vec3.
-   * @return El valor de la distancia al cuadrado entre v_i y v_j.
-   */
-  template <typename DataType>
-  double vec3<DataType>::SquaredDistance(const vec3<DataType> & v_i, const vec3<DataType> & v_j) {
-    return pow(v_i.x - v_j.x, 2) + pow(v_i.y - v_j.y, 2) + pow(v_i.z - v_j.z, 2);
-  }
-
   template struct vec3<double>;
   template struct vec3<size_t>;
   template struct vec3<int>;

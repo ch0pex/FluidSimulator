@@ -18,6 +18,7 @@ namespace sim {
       vec3();
 
       constexpr vec3(double _x, double _y, double _z) : x(_x), y(_y), z(_z) { }
+
       constexpr vec3(int _x, int _y, int _z) : x(_x), y(_y), z(_z) { }
 
       vec3<DataType> operator+(vec3<DataType> const & vector) const;
@@ -32,7 +33,12 @@ namespace sim {
 
       vec3<DataType> operator/(DataType scalar) const;
 
-      static double SquaredDistance(const vec3<DataType>& v_i, const vec3<DataType>& v_j);
+      inline static double SquaredDistance(const vec3<DataType>& v_i, const vec3<DataType>& v_j){
+        const double x = v_i.x - v_j.x;
+        const double y = v_i.y - v_j.y;
+        const double z = v_i.z - v_j.z;
+        return x * x + y * y + z * z;
+      }
 
       /**
        * imprimir un objeto vec3 en un flujo de salida (como std::cout)
