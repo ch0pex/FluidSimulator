@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS_OFF)
 
 add_compile_options(-Wall -Wextra -Werror -pedantic -pedantic-errors)
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native -flto")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native -O3 -flto -ffast-math -ftree-vectorize -fprefetch-loop-arrays")
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 include(FetchContent)
