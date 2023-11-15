@@ -1,0 +1,420 @@
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 250 res/large.fld res/large-temp.fld':
+
+          3.956,26 msec task-clock                #    0,977 CPUs utilized          
+                36      context-switches          #    0,009 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.899      page-faults               #    0,733 K/sec                  
+    12.988.107.533      cycles                    #    3,283 GHz                    
+    28.301.402.952      instructions              #    2,18  insn per cycle         
+     3.760.858.572      branches                  #  950,608 M/sec                  
+        42.554.754      branch-misses             #    1,13% of all branches        
+
+       4,047385543 seconds time elapsed
+
+       3,957377000 seconds user
+       0,000000000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 500 res/large.fld res/large-temp.fld':
+
+          7.931,22 msec task-clock                #    0,991 CPUs utilized          
+                42      context-switches          #    0,005 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.552      page-faults               #    0,322 K/sec                  
+    26.005.803.268      cycles                    #    3,279 GHz                    
+    56.911.642.985      instructions              #    2,19  insn per cycle         
+     7.554.973.577      branches                  #  952,562 M/sec                  
+        83.127.215      branch-misses             #    1,10% of all branches        
+
+       8,001939208 seconds time elapsed
+
+       7,923979000 seconds user
+       0,007999000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 750 res/large.fld res/large-temp.fld':
+
+         11.929,02 msec task-clock                #    0,995 CPUs utilized          
+                55      context-switches          #    0,005 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.838      page-faults               #    0,238 K/sec                  
+    39.085.004.005      cycles                    #    3,276 GHz                    
+    85.353.298.484      instructions              #    2,18  insn per cycle         
+    11.328.791.633      branches                  #  949,684 M/sec                  
+       124.091.792      branch-misses             #    1,10% of all branches        
+
+      11,990569516 seconds time elapsed
+
+      11,921758000 seconds user
+       0,008001000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1000 res/large.fld res/large-temp.fld':
+
+         15.846,32 msec task-clock                #    0,996 CPUs utilized          
+                66      context-switches          #    0,004 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.727      page-faults               #    0,172 K/sec                  
+    51.933.254.713      cycles                    #    3,277 GHz                    
+   113.608.859.233      instructions              #    2,19  insn per cycle         
+    15.079.418.972      branches                  #  951,604 M/sec                  
+       165.060.009      branch-misses             #    1,09% of all branches        
+
+      15,907988790 seconds time elapsed
+
+      15,830969000 seconds user
+       0,015994000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1250 res/large.fld res/large-temp.fld':
+
+         19.545,87 msec task-clock                #    0,997 CPUs utilized          
+                84      context-switches          #    0,004 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.811      page-faults               #    0,144 K/sec                  
+    64.111.829.041      cycles                    #    3,280 GHz                    
+   142.188.970.684      instructions              #    2,22  insn per cycle         
+    18.869.477.999      branches                  #  965,395 M/sec                  
+       205.118.261      branch-misses             #    1,09% of all branches        
+
+      19,608362685 seconds time elapsed
+
+      19,542559000 seconds user
+       0,004000000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1500 res/large.fld res/large-temp.fld':
+
+         23.864,04 msec task-clock                #    0,997 CPUs utilized          
+               102      context-switches          #    0,004 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.822      page-faults               #    0,118 K/sec                  
+    78.186.597.083      cycles                    #    3,276 GHz                    
+   170.822.487.133      instructions              #    2,18  insn per cycle         
+    22.665.013.084      branches                  #  949,756 M/sec                  
+       246.257.863      branch-misses             #    1,09% of all branches        
+
+      23,928453488 seconds time elapsed
+
+      23,856656000 seconds user
+       0,008000000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 1750 res/large.fld res/large-temp.fld':
+
+         27.727,29 msec task-clock                #    0,998 CPUs utilized          
+               133      context-switches          #    0,005 K/sec                  
+                 5      cpu-migrations            #    0,000 K/sec                  
+             2.807      page-faults               #    0,101 K/sec                  
+    90.991.770.948      cycles                    #    3,282 GHz                    
+   199.373.051.675      instructions              #    2,19  insn per cycle         
+    26.450.583.789      branches                  #  953,955 M/sec                  
+       286.528.331      branch-misses             #    1,08% of all branches        
+
+      27,789749967 seconds time elapsed
+
+      27,719814000 seconds user
+       0,007998000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 2000 res/large.fld res/large-temp.fld':
+
+         31.789,07 msec task-clock                #    0,998 CPUs utilized          
+                88      context-switches          #    0,003 K/sec                  
+                 1      cpu-migrations            #    0,000 K/sec                  
+             2.808      page-faults               #    0,088 K/sec                  
+   104.268.456.138      cycles                    #    3,280 GHz                    
+   227.911.435.250      instructions              #    2,19  insn per cycle         
+    30.234.575.499      branches                  #  951,100 M/sec                  
+       328.114.201      branch-misses             #    1,09% of all branches        
+
+      31,854024917 seconds time elapsed
+
+      31,785827000 seconds user
+       0,003999000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 2250 res/large.fld res/large-temp.fld':
+
+         35.803,96 msec task-clock                #    0,998 CPUs utilized          
+               203      context-switches          #    0,006 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.742      page-faults               #    0,077 K/sec                  
+   117.327.518.864      cycles                    #    3,277 GHz                    
+   256.564.791.991      instructions              #    2,19  insn per cycle         
+    34.032.411.213      branches                  #  950,521 M/sec                  
+       368.841.090      branch-misses             #    1,08% of all branches        
+
+      35,867271946 seconds time elapsed
+
+      35,796638000 seconds user
+       0,007998000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'build/fluid/fluid 2500 res/large.fld res/large-temp.fld':
+
+         39.445,57 msec task-clock                #    0,998 CPUs utilized          
+               104      context-switches          #    0,003 K/sec                  
+                 0      cpu-migrations            #    0,000 K/sec                  
+             2.899      page-faults               #    0,073 K/sec                  
+   129.544.163.058      cycles                    #    3,284 GHz                    
+   284.948.675.027      instructions              #    2,20  insn per cycle         
+    37.797.739.691      branches                  #  958,225 M/sec                  
+       410.224.184      branch-misses             #    1,09% of all branches        
+
+      39,511657917 seconds time elapsed
+
+      39,438525000 seconds user
+       0,008000000 seconds sys
+
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+             22,26 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+             42,38 Joules energy-pkg                                                  
+              9,89 Joules energy-ram                                                  
+
+       3,999358894 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+             44,46 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+             84,62 Joules energy-pkg                                                  
+             19,73 Joules energy-ram                                                  
+
+       7,973140129 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+             66,81 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+            127,06 Joules energy-pkg                                                  
+             29,48 Joules energy-ram                                                  
+
+      11,944983671 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+             88,33 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+            168,02 Joules energy-pkg                                                  
+             39,09 Joules energy-ram                                                  
+
+      15,805581221 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            110,73 Joules energy-cores                                                
+              0,03 Joules  energy-gpu                                                 
+            210,46 Joules energy-pkg                                                  
+             48,85 Joules energy-ram                                                  
+
+      19,751402525 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            134,19 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+            254,23 Joules energy-pkg                                                  
+             58,81 Joules energy-ram                                                  
+
+      23,746078225 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            156,83 Joules energy-cores                                                
+              0,04 Joules  energy-gpu                                                 
+            296,98 Joules energy-pkg                                                  
+             68,55 Joules energy-ram                                                  
+
+      27,671411039 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            179,34 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+            340,47 Joules energy-pkg                                                  
+             78,89 Joules energy-ram                                                  
+
+      31,887159242 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            201,63 Joules energy-cores                                                
+              0,04 Joules  energy-gpu                                                 
+            382,02 Joules energy-pkg                                                  
+             88,19 Joules energy-ram                                                  
+
+      35,594579066 seconds time elapsed
+
+Number of particles: 15138
+Particles per meter: 292
+Smoothing length: 0.00580479
+Particles Mass: 4.01653e-05
+Grid size: 22 x 31 x 22
+Number of blocks: 15004
+Block size: 0.00590909 x 0.00580645 x 0.00590909
+
+ Performance counter stats for 'system wide':
+
+            224,86 Joules energy-cores                                                
+              0,00 Joules  energy-gpu                                                 
+            425,92 Joules energy-pkg                                                  
+             98,24 Joules energy-ram                                                  
+
+      39,774250030 seconds time elapsed
+
