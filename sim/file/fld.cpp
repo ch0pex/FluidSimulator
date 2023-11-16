@@ -166,10 +166,10 @@ namespace sim {
     auto particle_per_meter = static_cast<float>(ppm);
     // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    output_file_.write(reinterpret_cast<char *>(&np), sizeof(int));
+    output_file_.write(reinterpret_cast<char *>(&particle_per_meter), sizeof(float));
     // el siguiente comentario está justificado para esta parte de la práctica por el profesorado
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
-    output_file_.write(reinterpret_cast<char *>(&particle_per_meter), sizeof(float));
+    output_file_.write(reinterpret_cast<char *>(&np), sizeof(int));
     return (SUCCESS);
   }
 
