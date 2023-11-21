@@ -1,0 +1,100 @@
+
+ Performance counter stats for 'system wide' (5 runs):
+
+              2,21 Joules energy-cores                                                  ( +-  0,34% )
+              0,00 Joules  energy-gpu                                                 
+              4,83 Joules energy-pkg                                                    ( +-  2,28% )
+              1,31 Joules energy-ram                                                    ( +-  4,56% )
+
+            0,5463 +- 0,0250 seconds time elapsed  ( +-  4,58% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+              4,38 Joules energy-cores                                                  ( +-  0,15% )
+              0,00 Joules  energy-gpu                                                 
+              9,26 Joules energy-pkg                                                    ( +-  0,13% )
+              2,41 Joules energy-ram                                                    ( +-  0,13% )
+
+           0,99932 +- 0,00117 seconds time elapsed  ( +-  0,12% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+              6,54 Joules energy-cores                                                  ( +-  0,17% )
+              0,00 Joules  energy-gpu                                                 
+             13,80 Joules energy-pkg                                                    ( +-  0,11% )
+              3,58 Joules energy-ram                                                    ( +-  0,05% )
+
+          1,483719 +- 0,000641 seconds time elapsed  ( +-  0,04% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+              8,73 Joules energy-cores                                                  ( +-  0,24% )
+              0,01 Joules  energy-gpu                                                   ( +- 99,08% )
+             18,40 Joules energy-pkg                                                    ( +-  0,20% )
+              4,75 Joules energy-ram                                                    ( +-  0,09% )
+
+           1,96907 +- 0,00101 seconds time elapsed  ( +-  0,05% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             10,89 Joules energy-cores                                                  ( +-  0,18% )
+              0,00 Joules  energy-gpu                                                   ( +-100,00% )
+             22,92 Joules energy-pkg                                                    ( +-  0,09% )
+              5,91 Joules energy-ram                                                    ( +-  0,11% )
+
+           2,44974 +- 0,00254 seconds time elapsed  ( +-  0,10% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             13,08 Joules energy-cores                                                  ( +-  0,14% )
+              0,00 Joules  energy-gpu                                                 
+             27,49 Joules energy-pkg                                                    ( +-  0,07% )
+              7,07 Joules energy-ram                                                    ( +-  0,05% )
+
+           2,92892 +- 0,00132 seconds time elapsed  ( +-  0,05% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             15,27 Joules energy-cores                                                  ( +-  0,12% )
+              0,00 Joules  energy-gpu                                                 
+             32,09 Joules energy-pkg                                                    ( +-  0,10% )
+              8,24 Joules energy-ram                                                    ( +-  0,10% )
+
+           3,41328 +- 0,00364 seconds time elapsed  ( +-  0,11% )
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             17,48 Joules energy-cores                                                  ( +-  0,16% )
+              0,01 Joules  energy-gpu                                                   ( +- 97,47% )
+             36,69 Joules energy-pkg                                                    ( +-  0,10% )
+              9,40 Joules energy-ram                                                    ( +-  0,05% )
+
+           3,89271 +- 0,00144 seconds time elapsed  ( +-  0,04% )
+
+
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             19,81 Joules energy-cores                                                  ( +-  0,63% )
+              0,00 Joules  energy-gpu                                                 
+             41,45 Joules energy-pkg                                                    ( +-  0,31% )
+             10,57 Joules energy-ram                                                    ( +-  0,05% )
+
+           4,37597 +- 0,00216 seconds time elapsed  ( +-  0,05% )
+
+ Performance counter stats for 'system wide' (5 runs):
+
+             21,89 Joules energy-cores                                                  ( +-  0,09% )
+              0,00 Joules  energy-gpu                                                   ( +-100,00% )
+             45,94 Joules energy-pkg                                                    ( +-  0,04% )
+             11,73 Joules energy-ram                                                    ( +-  0,06% )
+
+           4,85695 +- 0,00279 seconds time elapsed  ( +-  0,06% )
+

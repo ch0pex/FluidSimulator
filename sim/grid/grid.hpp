@@ -53,9 +53,7 @@ namespace sim {
 
       std::vector<Block> blocks_;
       std::vector<std::vector<size_t>> adjacent_blocks_;
-
       std::map<size_t, std::set<Limits>> grid_limits_;
-
   };
 }  // namespace sim
 

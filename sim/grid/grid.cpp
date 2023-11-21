@@ -4,6 +4,14 @@
 #include <iostream>
 
 namespace sim {
+  /**
+   * Constructor de Grid, a partir de los parametros se inicializa el grid colocando todas las particulas en los
+   * respectivos bloques asi como tambien se calculan los bloques adjacentes y los bloques limites. Por ultimo se emite
+   * un mensaje con los parametros resultantes de la inicializacion de la simulacion
+   * @param np: numero de partiuclas
+   * @param ppm: partiuclas por metro
+   * @param particles: vector de particulas que contiene el grid
+   */
   Grid::Grid(int np, double ppm, std::vector<Particle> & particles)
     : num_particles(np), particles_param_(ppm),
       grid_size_({std::floor((TOP_LIMIT.x - BOTTOM_LIMIT.x) / particles_param_.smoothing),
@@ -28,6 +36,11 @@ namespace sim {
     InitMessage(); 
   }
 
+  /**
+   * Funcion de reposicionamiento de las particulas, crea un vector de bloques nuevo donde se recolocaran las particulas
+   * en funcion de sus nuevas posiciones, de esta forma evitamos reposicionar particulas varias veces.
+   * Una vez colocadas todas las particulas se intercambia el vector de bloques antiguo por el nuevo.
+   */
   void Grid::Repositioning() {
     std::vector<Block> aux(num_blocks_);
 
@@ -40,7 +53,8 @@ namespace sim {
   }
 
   /**
-   * Calcula las aceleraciones de las partículas.
+   * Funcion de calculo de aceleraciones, primero se calculan todas las densidades y posteriormente todas las
+   * aceleraciones
    */
   void Grid::CalculateAccelerations() {
     // Las densisdes y aceleraciones no son copiadas en el grid auxiliar por lo que ya son 0
@@ -58,18 +72,30 @@ namespace sim {
     }
   }
 
+  /*
+   * Funcion para procesar las colisiones, recorre todos los bloques que son limites del grid y procesa las colisiones
+   * con los limites modificando las aceleraciondes de las particulas
+   */
   void Grid::ProcessCollisions() {
     for(auto& [index, limits] : grid_limits_){
       blocks_[index].ProcessCollisions(limits);
     }
   }
 
+  /*
+   * Funcion para mover las particulas, por cada una de las particulas se actualiza su posicion, hv y velocidad en
+   * funcion de la aceleracion y densidad calculada en los pasos anteriores
+   */
   void Grid::MoveParticles() {
     for(auto& block : blocks_) {
       block.MoveParticles();
     }
   }
 
+  /*
+   * Funcion para procesar los limites, recorre todos los bloques que son limites del grid y procesa dichos limites
+   * modificando la velocidad, hv y velocidad de las particulas
+   */
   void Grid::ProcessLimits() {
     for(auto& [index, limits] : grid_limits_){
       blocks_[index].ProcessLimits(limits);
@@ -108,6 +134,9 @@ namespace sim {
             static_cast<size_t>(pos_k) * grid_size_.x * grid_size_.y);
   }
 
+  /**
+   * Mensaje de inicializacion de la simulacion
+   */
   void Grid::InitMessage() const {
     std::cout << "Number of particles: " << num_particles << "\n";
     std::cout << "Particles per meter: " << particles_param_.particles_per_meter << "\n";
@@ -118,6 +147,11 @@ namespace sim {
     std::cout << "Block size: " << block_size_ << "\n";
   }
 
+  /**
+   * Calcula los bloques adjacentes para cada bloque pasado por parametro, a su vez determina si dicho bloque pertenece
+   * a una de las caras del grid, y lo almacena en dicho caso en grid_limits
+   * @param index: indice del bloque
+   */
   void Grid::CalculateAdjacentAndLimitBlocks(size_t index) {
     vec3<int> const block_pos = {index % grid_size_.x, (index / grid_size_.x) % grid_size_.y,
                                  index / (grid_size_.x * grid_size_.y)};
@@ -145,6 +179,12 @@ namespace sim {
     }
   }
 
+  /**
+   * Funcion utilizada por CalculateAdjacentAndLimitBlocks para determinar si la posicion pasada por parametro
+   * corresponde a un bloque del grid
+   * @param block_pos
+   * @return
+   */
   bool Grid::BlockInBounds(const vec3<int>& block_pos) const {
     return block_pos.x >= 0 && static_cast<size_t>(block_pos.x) < grid_size_.x
            && block_pos.y >= 0 && static_cast<size_t>(block_pos.y) < grid_size_.y &&

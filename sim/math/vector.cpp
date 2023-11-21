@@ -69,7 +69,6 @@ namespace sim {
   }
 
   /**
-   *
    * @tparam DataType
    * @param scalar El valor escalar por el que se dividirá el vector.
    * @return nuevo vector vec3 cuyos componentes son el resultado de la división.

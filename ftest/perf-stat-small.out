@@ -1,0 +1,140 @@
+
+ Performanc counter stats for 'build/fluid/fluid 250 res/small.fld res/small-temp.fld' (5 runs):
+
+            495,81 msec task-clock                #    0,920 CPUs utilized            ( +-  0,31% )
+                13      context-switches          #    0,025 K/sec                    ( +- 17,50% )
+                 1      cpu-migrations            #    0,002 K/sec                    ( +- 46,77% )
+               940      page-faults               #    0,002 M/sec                    ( +-  0,08% )
+     1.568.406.457      cycles                    #    3,163 GHz                      ( +-  0,05% )
+     3.103.642.365      instructions              #    1,98  insn per cycle           ( +-  0,00% )
+       477.029.894      branches                  #  962,125 M/sec                    ( +-  0,01% )
+        17.840.496      branch-misses             #    3,74% of all branches          ( +-  0,07% )
+
+            0,5391 +- 0,0166 seconds time elapsed  ( +-  3,08% )
+
+
+ Performance counter stats for 'build/fluid/fluid 500 res/small.fld res/small-temp.fld' (5 runs):
+
+            977,48 msec task-clock                #    0,974 CPUs utilized            ( +-  0,16% )
+                12      context-switches          #    0,012 K/sec                    ( +-  4,56% )
+                 1      cpu-migrations            #    0,001 K/sec                    ( +- 40,82% )
+               939      page-faults               #    0,961 K/sec                    ( +-  0,08% )
+     3.104.098.896      cycles                    #    3,176 GHz                      ( +-  0,06% )
+     6.168.332.980      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+       948.018.268      branches                  #  969,856 M/sec                    ( +-  0,00% )
+        35.376.091      branch-misses             #    3,73% of all branches          ( +-  0,07% )
+
+           1,00325 +- 0,00155 seconds time elapsed  ( +-  0,15% )
+
+
+ Performance counter stats for 'build/fluid/fluid 750 res/small.fld res/small-temp.fld' (5 runs):
+
+          1.463,10 msec task-clock                #    0,983 CPUs utilized            ( +-  0,08% )
+                16      context-switches          #    0,011 K/sec                    ( +-  3,27% )
+                 0      cpu-migrations            #    0,000 K/sec                    ( +- 61,24% )
+               940      page-faults               #    0,643 K/sec                    ( +-  0,11% )
+     4.643.719.855      cycles                    #    3,174 GHz                      ( +-  0,02% )
+     9.242.129.917      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     1.419.864.704      branches                  #  970,452 M/sec                    ( +-  0,00% )
+        52.766.317      branch-misses             #    3,72% of all branches          ( +-  0,03% )
+
+           1,48901 +- 0,00101 seconds time elapsed  ( +-  0,07% )
+
+
+ Performance counter stats for 'build/fluid/fluid 1000 res/small.fld res/small-temp.fld' (5 runs):
+
+          1.939,17 msec task-clock                #    0,987 CPUs utilized            ( +-  0,07% )
+                17      context-switches          #    0,009 K/sec                    ( +-  2,92% )
+                 1      cpu-migrations            #    0,000 K/sec                    ( +- 25,00% )
+               942      page-faults               #    0,486 K/sec                    ( +-  0,09% )
+     6.178.626.196      cycles                    #    3,186 GHz                      ( +-  0,06% )
+    12.313.249.848      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     1.891.377.017      branches                  #  975,353 M/sec                    ( +-  0,00% )
+        70.178.166      branch-misses             #    3,71% of all branches          ( +-  0,04% )
+
+           1,96490 +- 0,00130 seconds time elapsed  ( +-  0,07% )
+
+
+ Performance counter stats for 'build/fluid/fluid 1250 res/small.fld res/small-temp.fld' (5 runs):
+
+          2.426,28 msec task-clock                #    0,989 CPUs utilized            ( +-  0,05% )
+                17      context-switches          #    0,007 K/sec                    ( +-  3,07% )
+                 1      cpu-migrations            #    0,000 K/sec                    ( +- 31,62% )
+               941      page-faults               #    0,388 K/sec                    ( +-  0,11% )
+     7.721.816.367      cycles                    #    3,183 GHz                      ( +-  0,01% )
+    15.388.331.900      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     2.363.248.366      branches                  #  974,020 M/sec                    ( +-  0,00% )
+        87.558.378      branch-misses             #    3,71% of all branches          ( +-  0,01% )
+
+           2,45286 +- 0,00135 seconds time elapsed  ( +-  0,05% )
+
+
+ Performance counter stats for 'build/fluid/fluid 1500 res/small.fld res/small-temp.fld' (5 runs):
+
+          2.906,97 msec task-clock                #    0,992 CPUs utilized            ( +-  0,09% )
+                22      context-switches          #    0,007 K/sec                    ( +-  8,61% )
+                 0      cpu-migrations            #    0,000 K/sec                    ( +- 61,24% )
+               939      page-faults               #    0,323 K/sec                    ( +-  0,11% )
+     9.253.675.892      cycles                    #    3,183 GHz                      ( +-  0,09% )
+    18.437.172.549      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     2.832.201.025      branches                  #  974,278 M/sec                    ( +-  0,00% )
+       105.091.546      branch-misses             #    3,71% of all branches          ( +-  0,02% )
+
+           2,93136 +- 0,00255 seconds time elapsed  ( +-  0,09% )
+
+
+ Performance counter stats for 'build/fluid/fluid 1750 res/small.fld res/small-temp.fld' (5 runs):
+
+          3.391,82 msec task-clock                #    0,993 CPUs utilized            ( +-  0,08% )
+                24      context-switches          #    0,007 K/sec                    ( +- 10,34% )
+                 0      cpu-migrations            #    0,000 K/sec                  
+               939      page-faults               #    0,277 K/sec                    ( +-  0,13% )
+    10.790.309.884      cycles                    #    3,181 GHz                      ( +-  0,04% )
+    21.502.675.870      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     3.303.078.329      branches                  #  973,837 M/sec                    ( +-  0,00% )
+       122.506.517      branch-misses             #    3,71% of all branches          ( +-  0,02% )
+
+           3,41707 +- 0,00312 seconds time elapsed  ( +-  0,09% )
+
+
+ Performance counter stats for 'build/fluid/fluid 2000 res/small.fld res/small-temp.fld' (5 runs):
+
+          3.871,16 msec task-clock                #    0,994 CPUs utilized            ( +-  0,05% )
+                25      context-switches          #    0,007 K/sec                    ( +-  7,36% )
+                 0      cpu-migrations            #    0,000 K/sec                    ( +- 61,24% )
+               939      page-faults               #    0,243 K/sec                    ( +-  0,10% )
+    12.324.520.855      cycles                    #    3,184 GHz                      ( +-  0,04% )
+    24.550.162.945      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     3.771.830.556      branches                  #  974,342 M/sec                    ( +-  0,00% )
+       139.921.132      branch-misses             #    3,71% of all branches          ( +-  0,02% )
+
+           3,89612 +- 0,00166 seconds time elapsed  ( +-  0,04% ) 
+
+
+ Performance counter stats for 'build/fluid/fluid 2250 res/small.fld res/small-temp.fld' (5 runs):
+
+          4.356,68 msec task-clock                #    0,994 CPUs utilized            ( +-  0,03% )
+                23      context-switches          #    0,005 K/sec                    ( +-  6,42% )
+                 1      cpu-migrations            #    0,000 K/sec                    ( +- 31,62% )
+               941      page-faults               #    0,216 K/sec                    ( +-  0,09% )
+    13.865.010.008      cycles                    #    3,182 GHz                      ( +-  0,05% )
+    27.628.438.964      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     4.244.180.279      branches                  #  974,177 M/sec                    ( +-  0,00% )
+       157.371.342      branch-misses             #    3,71% of all branches          ( +-  0,02% )
+
+           4,38237 +- 0,00151 seconds time elapsed  ( +-  0,03% )
+
+
+ Performance counter stats for 'build/fluid/fluid 2500 res/small.fld res/small-temp.fld' (5 runs):
+
+          4.836,52 msec task-clock                #    0,994 CPUs utilized            ( +-  0,05% )
+                27      context-switches          #    0,005 K/sec                    ( +-  8,12% )
+                 0      cpu-migrations            #    0,000 K/sec                  
+               939      page-faults               #    0,194 K/sec                    ( +-  0,10% )
+    15.397.105.745      cycles                    #    3,184 GHz                      ( +-  0,04% )
+    30.683.634.776      instructions              #    1,99  insn per cycle           ( +-  0,00% )
+     4.713.798.423      branches                  #  974,627 M/sec                    ( +-  0,00% )
+       174.865.101      branch-misses             #    3,71% of all branches          ( +-  0,01% )
+
+           4,86356 +- 0,00376 seconds time elapsed  ( +-  0,08% )
+

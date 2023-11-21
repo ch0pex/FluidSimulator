@@ -6,7 +6,12 @@
 #include "sim/math/math.hpp"
 
 namespace sim {
-
+  /**
+   * Constructor de ParticlesData a partir de ppm se calcula la masa de la particula el
+   * smoothing y sus respectivas potencias. De esta forma ganamos mucho rendimiento ahorrando tener que calcular
+   * h^2, h^6 y h^9 en cada iteracion.
+   * @param ppm
+   */
   ParticlesData::ParticlesData(double ppm)
       : particles_per_meter(ppm), smoothing(MUL_RAD / ppm),
         smoothing_pow_2(pow(smoothing, 2)),
@@ -14,6 +19,11 @@ namespace sim {
         smoothing_pow_9(pow(smoothing, 9)),
         mass(DENSITY / pow(ppm, 3)) { }
 
+  /**
+   * Constructor de particle se pasa por parametro el ide la posicion, hvy velocidad.
+   * La acelearcion y la densidad se inicializan a 0
+   * @param other
+   */
   Particle::Particle(size_t _id, vec3d& _position, vec3d& _hv, vec3d& _velocity)
     : id(_id),
       position(_position),
@@ -21,7 +31,10 @@ namespace sim {
       velocity(_velocity),
       acceleration(GRAVITY),
       density(0) { }
-
+  /**
+   * Constructor copia de particle, cuando una particula se copia la aceleracion y la gravedad se pone a 0
+   * @param other
+   */
   Particle::Particle(sim::Particle const & other)
     : id(other.id),
       position(other.position),

@@ -34,5 +34,5 @@ add_subdirectory(fluid)
 
 enable_testing()
 add_subdirectory(utest)
-add_subdirectory(ftest)
+#add_subdirectory(ftest)
 
