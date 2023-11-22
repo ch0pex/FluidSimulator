@@ -5,44 +5,18 @@
 - Alberto Diaz-Pacheco Corrales
 - Miguel Dario Trosel Manrique
 
-Tips de optimizacion:
-
-    - C++ almacena los arrays multidimensionales por filas, no recomendable usar arrays multidimiensionales
-    - Usar arrays unidimensionales, funcion para determinar posicioin i,j
-    - Programacion orientada a datos
-
-Normas y anotaciones:
-
-     - No puede haber funciones con mas de 20 lineas
-     - No puede haber funciones ocn mas de 4 parametros
-     - Todo el calculo interno con doubles a la hora de escribir en el archivo lo pasamos a float
-
-Pasos de la simulacion: 
-- 1- Analisis de argumentos
-
-       - Numero de argumentos correcto
-       - Time step numerico
-       - Time step no negativo
-       - Archivo init para leer
-       - Archivo final para escritura
-- 2- Iniciacion de la simulacion
-
-       - Longitud del suavizado
-       - Masa de la particula
-       - Vector de tamano de malla
-       - Tamano de bloque de malla
-
-- 3- Procesamiento de pasos de tiempo
-
-       - Reposicionamiento de cada particual en la malla
-       - Calculo de fuerzas y aceleraciones para cada particula
-       - Procesamiento de colisiones
-       - Movimiento de particulas
-       - Procesamiento de limites
-
-- 4- Almacenamiento de resultados
-
-       - Tipo de archivo binario
-       - Cabecera con ppm y np
-       - Informacion de cad particula p, h, v
-
+Estructura de archivos: <br>
+.<br>
+├── fluid: Carpeta con el ejecutable principal de la simulacion<br>          
+├── ftest: Carpeta con pruebas funcionales y resultados de rendimiento<br>
+├── outs: Carpeta con los outputs del programa<br>
+├── res: Carpeta con recursos, archivos de entrada y salidas de referencia<br>
+│   └── out: Carpeta con ficheros de salida de referencia entregados por el profesorado<br>
+├── sim: Carpeta de la libreria de la simulacion<br>
+│   ├── args: Carpeta con la clase para comprobar los argumentos <br>
+│   ├── file: Carpeta con la clase que representa los archivos .fld<br>
+│   ├── grid: Carpeta con todas las clases que representan el grid de la simulacion<br>
+│   ├── math: Carpeta con la clase vector y distintas formulas matematicas<br>
+│   └── utils: Carpeta con utilidades<br>
+├── trz: Carpeta con las trazas utilizadas para la depuracion<br>
+└── utest: Carpeta con las pruebas unitarias<br>
