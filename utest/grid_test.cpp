@@ -13,7 +13,7 @@ const vec3d kInitialPositionOffset = vec3d(-0.06649009138345718, -0.077304705977
 const vec3d kHvVector = vec3d(4.0, 5.0, 6.0);
 const vec3d kVelocityIncrement = vec3d(1.0, 8.0, 9.0);
 const double kDensityMultiplier = 0.8571428571428572;
-double asserted_mass = 0.00099700599001497931;
+const double asserted_mass = 0.00099700599001497931;
 
 // Test constructor and GetNumParticles method
   TEST(GridTest, TestDensity) {
@@ -22,8 +22,8 @@ double asserted_mass = 0.00099700599001497931;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
-      size_t id = i;
+      const double j = kDensityMultiplier * i;
+      const size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
       vec3d velocity = kVelocityIncrement * static_cast<double>(i);
@@ -34,18 +34,19 @@ double asserted_mass = 0.00099700599001497931;
 
     grid->CalculateAccelerations();
 
-    double density = grid->GetBlocks().at(0).GetParticles().at(0).density;
+    const double density = grid->GetBlocks().at(0).GetParticles().at(0).density;
 
     EXPECT_NE(particles.at(0).density, density);
   }
+
   TEST(GridTest, TestAcceleration) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
-      size_t id = i;
+      const double j = kDensityMultiplier * i;
+      const size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
       vec3d velocity = kVelocityIncrement * static_cast<double>(i);
@@ -56,18 +57,19 @@ double asserted_mass = 0.00099700599001497931;
 
     grid->ProcessCollisions();
 
-    double acceleration_x = grid->GetBlocks()[0].GetParticles()[0].acceleration.x;
+    const double acceleration_x = grid->GetBlocks()[0].GetParticles()[0].acceleration.x;
 
     EXPECT_NE(particles[0].acceleration.x, acceleration_x);
   }
+
   TEST(GridTest, TestMoveParticles) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
-      size_t id = i;
+      const double j = kDensityMultiplier * i;
+      const size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
       vec3d velocity = kVelocityIncrement * static_cast<double>(i);
@@ -78,18 +80,19 @@ double asserted_mass = 0.00099700599001497931;
 
     grid->MoveParticles();
 
-    double position_x = grid->GetBlocks()[0].GetParticles()[0].position.x;
+    const double position_x = grid->GetBlocks()[0].GetParticles()[0].position.x;
 
     EXPECT_NE(particles[0].position.x, position_x);
   }
+
   TEST(GridTest, TestRepositioning) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
-      size_t id = i;
+      const double j = kDensityMultiplier * i;
+      const size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
       vec3d velocity = kVelocityIncrement * static_cast<double>(i);
@@ -100,18 +103,19 @@ double asserted_mass = 0.00099700599001497931;
 
     grid->ProcessLimits();
 
-    double position_x = grid->GetBlocks()[0].GetParticles()[0].position.x;
+    const double position_x = grid->GetBlocks()[0].GetParticles()[0].position.x;
 
     EXPECT_NE(particles[0].position.x, position_x);
   }
+
   TEST(GridTest, TestNumParticles) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
-      size_t id = i;
+      const double j = kDensityMultiplier * i;
+      const size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
       vec3d velocity = kVelocityIncrement * static_cast<double>(i);
@@ -120,17 +124,18 @@ double asserted_mass = 0.00099700599001497931;
     }
     grid.emplace(kBlockSize, kParticlesPerMeter, particles);
 
-    int num_particles = grid->GetNumParticles();
+    const int num_particles = grid->GetNumParticles();
 
     EXPECT_EQ(num_particles, kParticleCount);
   }
+
   TEST(GridTest, TestGetParticlesPerMeter) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
+      const double j = kDensityMultiplier * i;
       size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
@@ -140,17 +145,18 @@ double asserted_mass = 0.00099700599001497931;
     }
     grid.emplace(kBlockSize, kParticlesPerMeter, particles);
 
-    double num_particles = grid->GetParticlesPerMeter();
+    const double num_particles = grid->GetParticlesPerMeter();
 
     EXPECT_EQ(num_particles, kParticlesPerMeter);
   }
+
   TEST(GridTest, TestParticlesData) {
     // Initialize the Grid with specific parameters and particles
     std::optional<Grid> grid;
     std::vector<Particle> particles;
     // Starting with a particle that is in block 1
     for (size_t i = 1; i <= kParticleCount; ++i) {
-      double j = kDensityMultiplier * i;
+      const double j = kDensityMultiplier * i;
       size_t id = i;
       vec3d position = kInitialPositionOffset - vec3d(j, 0.0, 0.0);
       vec3d hv = kHvVector;
