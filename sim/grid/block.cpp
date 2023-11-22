@@ -42,6 +42,7 @@ namespace sim {
       particles_[i].TransformDenisty(particles_params);
     }
   }
+
    /**
    * Calcula las aceleraciones de las partículas en el bloque en función de sus interacciones con otras partículas en el
    * mismo bloque y bloques adyacentes.
@@ -107,7 +108,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando para colisiones en la dirección X.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
   */
-  void Block::CollisionsX(Particle& particle, std::set<Limits>& limits) {
+  void Block::CollisionsX(Particle& particle, const std::set<Limits>& limits) {
     double x = 0.0;
     double x_diff = 0.0;
     // Verifica si el conjunto de límites contiene el límite CX0.
@@ -143,7 +144,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando para colisiones en la dirección Y.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
   */
-  void Block::CollisionsY(Particle& particle, std::set<Limits> & limits) {
+  void Block::CollisionsY(Particle& particle, const std::set<Limits> & limits) {
     double y = 0.0;
     double y_diff = 0.0;
 
@@ -173,7 +174,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando para colisiones en la dirección Z.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
   */
-  void Block::CollisionsZ(Particle& particle, std::set<Limits> & limits) {
+  void Block::CollisionsZ(Particle& particle, const std::set<Limits> & limits) {
     double z = 0.0;
     double z_diff = 0.0;
     if (limits.contains(CZ0)) {
@@ -211,7 +212,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando en relación a los límites en la dirección X.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
   */
-  void Block::LimitsX(Particle & particle, std::set<Limits> & limits) {
+  void Block::LimitsX(Particle & particle, const std::set<Limits> & limits) {
     double dx = 0.0;
     if (limits.contains(CX0)) {
       dx = particle.position.x - BOTTOM_LIMIT.x;
@@ -241,7 +242,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando en relación a los límites en la dirección Y.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
    */
-  void Block::LimitsY(Particle & particle, std::set<Limits> & limits) {
+  void Block::LimitsY(Particle & particle, const std::set<Limits> & limits) {
     double dy = 0.0;
     if (limits.contains(CY0)) {
       dy = particle.position.y - BOTTOM_LIMIT.y;

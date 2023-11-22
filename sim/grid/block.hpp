@@ -36,6 +36,6 @@ namespace sim {
 
       static void LimitsZ(Particle& particle, const std::set<Limits>& limits);
 
-      std::vector<Particle> particles_; //TODO; justificar porque creemos que es mejor usar esto que un soa, mejorar localidad espacial
+      std::vector<Particle> particles_; 
   };
 }  // namespace sim
