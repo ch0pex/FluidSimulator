@@ -72,7 +72,7 @@ namespace sim {
     }
   }
 
-  /*
+  /**
    * Funcion para procesar las colisiones, recorre todos los bloques que son limites del grid y procesa las colisiones
    * con los limites modificando las aceleraciondes de las particulas
    */
@@ -82,7 +82,7 @@ namespace sim {
     }
   }
 
-  /*
+  /**
    * Funcion para mover las particulas, por cada una de las particulas se actualiza su posicion, hv y velocidad en
    * funcion de la aceleracion y densidad calculada en los pasos anteriores
    */
@@ -92,7 +92,7 @@ namespace sim {
     }
   }
 
-  /*
+  /**
    * Funcion para procesar los limites, recorre todos los bloques que son limites del grid y procesa dichos limites
    * modificando la velocidad, hv y velocidad de las particulas
    */

@@ -4,7 +4,7 @@
 
 namespace sim::math {
 
-  double DensityIncrement(const ParticlesData& particles_params, double squared_distance) {
+  double DensityIncrement(const ParticlesData& particles_params, const double squared_distance) {
     return pow(particles_params.smoothing_pow_2 - squared_distance, 3);
   }
 

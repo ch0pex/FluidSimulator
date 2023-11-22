@@ -12,7 +12,7 @@ namespace sim {
    * h^2, h^6 y h^9 en cada iteracion.
    * @param ppm
    */
-  ParticlesData::ParticlesData(double ppm)
+  ParticlesData::ParticlesData(const double ppm)
       : particles_per_meter(ppm), smoothing(MUL_RAD / ppm),
         smoothing_pow_2(pow(smoothing, 2)),
         smoothing_pow_6(pow(smoothing_pow_2, 3)),

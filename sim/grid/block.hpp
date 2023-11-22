@@ -1,5 +1,4 @@
 #include "sim/grid/particle.hpp"
-#include "sim/math/vector.hpp"
 #include "sim/utils/constants.hpp"
 
 #include <vector>
@@ -25,17 +24,17 @@ namespace sim {
       void MoveParticles();
 
     private:
-      void CollisionsX(Particle& particle, std::set<Limits>& limits);
+      static void CollisionsX(Particle& particle, const std::set<Limits>& limits);
 
-      void CollisionsY(Particle& particle, std::set<Limits>& limits);
+      static void CollisionsY(Particle& particle, const std::set<Limits>& limits);
 
-      void CollisionsZ(Particle& particle, std::set<Limits>& limits);
+      static void CollisionsZ(Particle& particle, const std::set<Limits>& limits);
 
-      void LimitsX(Particle& particle, std::set<Limits>& limits);
+      static void LimitsX(Particle& particle, const std::set<Limits>& limits);
 
-      void LimitsY(Particle& particle, std::set<Limits>& limits);
+      static void LimitsY(Particle& particle, const std::set<Limits>& limits);
 
-      void LimitsZ(Particle& particle, std::set<Limits>& limits);
+      static void LimitsZ(Particle& particle, const std::set<Limits>& limits);
 
       std::vector<Particle> particles_; //TODO; justificar porque creemos que es mejor usar esto que un soa, mejorar localidad espacial
   };

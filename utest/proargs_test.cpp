@@ -9,6 +9,7 @@ namespace sim {
    * Test función CheckCount con argumentos válidos.
    */
   TEST(ProargsTest, CheckCountValidArgs) {
+    // Se usan arrays tipo C puesto que imitan a los argumentos del programa que se pasan a la funcion main
     char const * args[] = {"prog_name", "10", "init_path", "final_path"};
     Proargs const parser(std::span<char const *>(args, 4));
     EXPECT_EQ(0, parser.CheckCount());

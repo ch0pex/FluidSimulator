@@ -4,9 +4,7 @@
 #include "sim/file/fld.hpp"
 #include "sim/utils/error.hpp"
 
-#include <cstdint>
 #include <span>
-#include <string_view>
 
 namespace sim {
   /// Clase encargada de comprobar los argumentos pasados por el usuario para ejecucion del programa

@@ -271,7 +271,7 @@ namespace sim {
   * @param particle La partícula que se está evaluando en relación a los límites en la dirección Z.
   * @param limits Un conjunto que almacena los límites del espacio en el que se encuentran las partículas.
    */
-  void Block::LimitsZ(Particle & particle, std::set<Limits> & limits) {
+  void Block::LimitsZ(Particle & particle, const std::set<Limits> & limits) {
     double dz = 0.0;
     if (limits.contains(CZ0)) {
       dz = particle.position.z - BOTTOM_LIMIT.z;

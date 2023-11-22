@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26) # Compile with 3.26 in Avignon
+cmake_minimum_required(VERSION 3.22) # Compile with 3.26 in Avignon
 project(fluid LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -34,5 +34,4 @@ add_subdirectory(fluid)
 
 enable_testing()
 add_subdirectory(utest)
-#add_subdirectory(ftest)
 

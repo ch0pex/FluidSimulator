@@ -1,7 +1,5 @@
 #include "vector.hpp"
 
-#include <cmath>
-
 namespace sim {
   // inicializamos las coordenadas a 0.0 en la clase vec3
   template <typename DataType>
