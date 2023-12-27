@@ -1,11 +1,25 @@
 #ifndef FLUID_VECTOR_HPP
 #define FLUID_VECTOR_HPP
 
-#include <array>
+#include <immintrin.h>
 #include <ostream>
-
 /// Vector de tres dimiensiones
+#define FASTCALL __attribute__((fastcall))
+
 namespace sim {
+  template <typename DataType>
+  struct vec3;
+  using vec3d   = vec3<double>;
+  using AVXvec3 = __m256d;
+  typedef AVXvec3 const FAVXvec3;
+  typedef AVXvec3 const & GAVXvec3;
+  typedef AVXvec3 const & HAVXvec3;
+  typedef AVXvec3 const & CAVXvec3;
+
+  inline FASTCALL AVXvec3 AVXsetvec3(double const d);
+  inline FASTCALL AVXvec3 AVXLoadvec3(vec3d const & vec);
+  inline FASTCALL vec3d AVXStorevec3(AVXvec3 & va);
+
   template <typename DataType>
   struct vec3 {
       DataType x, y, z;
@@ -33,10 +47,10 @@ namespace sim {
 
       vec3<DataType> operator/(DataType scalar) const;
 
-      inline static double SquaredDistance(const vec3<DataType>& v_i, const vec3<DataType>& v_j){
-        const double x = v_i.x - v_j.x;
-        const double y = v_i.y - v_j.y;
-        const double z = v_i.z - v_j.z;
+      inline static double SquaredDistance(vec3<DataType> const & v_i, vec3<DataType> const & v_j) {
+        double const x = v_i.x - v_j.x;
+        double const y = v_i.y - v_j.y;
+        double const z = v_i.z - v_j.z;
         return x * x + y * y + z * z;
       }
 
@@ -53,6 +67,19 @@ namespace sim {
       }
   };
 
-  using vec3d = vec3<double>;
+  inline FASTCALL AVXvec3 AVXsetvec3(double const d) {
+    return _mm256_set_pd(d, d, d, d);
+  };
+
+  inline FASTCALL vec3d AVXStorevec3(AVXvec3 & va) {
+    double d[4];
+    _mm256_store_pd(d, va);
+    return vec3d(d[3], d[2], d[1]);
+  };
+
+  inline FASTCALL AVXvec3 AVXLoadvec3(vec3d const & vec) {
+    double const d[] = {0.0, vec.z, vec.y, vec.x};
+    return _mm256_load_pd(d);
+  };
 }  // namespace sim
 #endif  // FLUID_VECTOR_HPP
