@@ -17,7 +17,12 @@ namespace sim {
         smoothing_pow_2(pow(smoothing, 2)),
         smoothing_pow_6(pow(smoothing_pow_2, 3)),
         smoothing_pow_9(pow(smoothing, 9)),
-        mass(DENSITY / pow(ppm, 3)) { }
+        mass(DENSITY / pow(ppm, 3)),
+        f45_pi_smooth_6(45 / (PI * smoothing_pow_6)),
+        mass_pressure_05(mass * PRESSURE * 0.5),
+        mass_goo(GOO * mass)
+
+  { }
 
   /**
    * Constructor de particle se pasa por parametro el ide la posicion, hvy velocidad.

@@ -13,6 +13,9 @@ namespace sim {
     double smoothing_pow_6;
     double smoothing_pow_9;
     double mass;
+    double f45_pi_smooth_6;
+    double mass_pressure_05;
+    double mass_goo;
   };
 
   struct Particle {

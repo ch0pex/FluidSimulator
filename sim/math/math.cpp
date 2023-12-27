@@ -22,14 +22,13 @@ namespace sim::math {
   vec3d AccelerationIncrement(ParticlesData const & params, Particle const & particle_i, Particle const & particle_j, double squared_distance) {
     double const distance = sqrt(std::max(squared_distance, MINIMUN_DISTANCE));
     vec3d const left = (particle_i.position - particle_j.position) *
-                       (15 / (PI * params.smoothing_pow_6)) * ((3 * params.mass * PRESSURE) * 0.5) *
+                       params.mass_pressure_05 *
                        (std::pow(params.smoothing - distance, 2) / distance) *
                        (particle_i.density + particle_j.density - 2 * DENSITY);
 
-    static const double right_scalar = (45 / (PI * params.smoothing_pow_6)) * GOO * params.mass;
-    vec3d const right = (particle_j.velocity - particle_i.velocity) * right_scalar;
+    vec3d const right = (particle_j.velocity - particle_i.velocity) * params.mass_goo;
     double const denominator = particle_i.density * particle_j.density;
-    return ((left + right) / denominator);
+    return ((left + right) * params.f45_pi_smooth_6 / denominator);
   }
 
 }  // namespace sim

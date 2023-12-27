@@ -11,6 +11,7 @@
  */
 int main(int argc, const char *argv[]) {
     const std::span<const char *> args_view{argv, static_cast<size_t>(argc)};
+    const auto init = std::chrono::high_resolution_clock::now();
     sim::Simulator fluid_sim = sim::Simulator(args_view);
     sim::error_code err = fluid_sim.ParseArgs(); //1- Comprobacion de argumentos
 
@@ -24,5 +25,9 @@ int main(int argc, const char *argv[]) {
             fluid_sim.StoreResults();
         }
     }
+    const auto end = std::chrono::high_resolution_clock::now();
+    const std::chrono::duration<double> total = end - init;
+    std::cout << "Tiempo de ejecución: " << total.count() << " segundos" << std::endl;
+
     return (err);
 }
